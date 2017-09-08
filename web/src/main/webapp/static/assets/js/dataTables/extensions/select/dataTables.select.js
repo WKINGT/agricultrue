@@ -326,7 +326,7 @@ function info ( api )
 	var add = function ( name, num ) {
         output.append( $('<span class="select-item"/>').append( api.i18n(
             'select.'+name+'s',
-            { _: '以选择 %d 行', 0: '', 1: '以选择 1 行'},
+            { _: '已选择 %d 行', 0: '', 1: '已选择 1 行'},
             num
         ) ) );
 	};

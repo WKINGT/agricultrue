@@ -83,6 +83,7 @@ public class MachineBlockService extends BaseService{
 
     public Boolean save(String blockId,String machineIds) {
         Db.update("delete from base_block_machine where block_id = ?",blockId);
+        if (StringUtils.isBlank(machineIds)) return true;
         String [] ids = machineIds.split(",");
         for (String id :ids){
             BaseBlockMachine baseBlockMachine = new BaseBlockMachine();

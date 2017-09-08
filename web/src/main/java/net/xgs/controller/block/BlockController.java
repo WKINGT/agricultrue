@@ -55,7 +55,7 @@ public class BlockController extends BaseController {
     }
     public void delete(){
         String [] ids =  getParam("ids").split(",");
-        Integer result = blockService.deleteBlock(ids);
+        Integer result = blockService.deleteBlock(ids,getSessionUserId());
         if (result==0){
             msg = Constants.deleteSuccess;
         }else{

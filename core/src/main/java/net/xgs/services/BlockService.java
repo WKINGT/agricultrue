@@ -102,12 +102,10 @@ public class BlockService extends BaseService {
 			baseMemberBlock.setBlockId(baseBlock.getId());
 			baseMemberBlock.setMemberId(optId);
 			blockMemberService.save(baseMemberBlock,optId);
-			if (StringUtils.isNotBlank(machineIds))
-				machineBlockService.save(baseBlock.getId(),machineIds);
+			machineBlockService.save(baseBlock.getId(),machineIds);
 			return baseBlock.save();
 		}else {
-			if (StringUtils.isNotBlank(machineIds))
-				machineBlockService.save(baseBlock.getId(),machineIds);
+			machineBlockService.save(baseBlock.getId(),machineIds);
 			return baseBlock.update();
 		}
 	}
@@ -121,11 +119,11 @@ public class BlockService extends BaseService {
 	 * @return 0:成功 1:正在使用 2：异常
 	 */
 	@Before(Tx.class)
-	public Integer deleteBlock(String[] ids) {
+	public Integer deleteBlock(String[] ids,String userId) {
 		for (String id : ids){
 			Record base_block_machine = Db.findFirst("select id from base_block_machine where block_id = ?",id);
 			if (base_block_machine!=null) return 1;
-			Record base_member_block = Db.findFirst("select id from base_member_block where block_id = ?",id);
+			Record base_member_block = Db.findFirst("select id from base_member_block where block_id = ? and member_id != ?",id,userId);
 			if (base_member_block!=null) return 1;
 			Db.update("update base_block set status = ? where id = ? ", BooleanEnum.FALSE.getValueStr(), id);
 		}
