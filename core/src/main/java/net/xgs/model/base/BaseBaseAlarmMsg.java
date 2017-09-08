@@ -57,6 +57,22 @@ public abstract class BaseBaseAlarmMsg<M extends BaseBaseAlarmMsg<M>> extends Mo
 		return get("add_data");
 	}
 
+	public void setMachineData(java.lang.Integer machineData) {
+		set("machine_data", machineData);
+	}
+
+	public java.lang.Integer getMachineData() {
+		return get("machine_data");
+	}
+
+	public void setThresholdData(java.lang.Integer thresholdData) {
+		set("threshold_data", thresholdData);
+	}
+
+	public java.lang.Integer getThresholdData() {
+		return get("threshold_data");
+	}
+
 	public void setMachineName(java.lang.String machineName) {
 		set("machine_name", machineName);
 	}

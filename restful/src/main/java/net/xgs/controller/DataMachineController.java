@@ -54,7 +54,6 @@ public class DataMachineController extends BaseController {
             List<HistoryDataMachine> historyDataMachines = new ArrayList<>();
             for (DayHistoryDataMachine dataMachine : result) {
                 HistoryDataMachine historyDataMachine = new HistoryDataMachine();
-                historyDataMachine.setId(dataMachine.getId());
                 historyDataMachine.setDataType(dataMachine.getDataType());
                 historyDataMachine.setMaxData(dataMachine.getMaxData());
                 historyDataMachine.setMinData(dataMachine.getMinData());

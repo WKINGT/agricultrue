@@ -43,6 +43,7 @@ public class MachineLimitInterceptor implements Interceptor {
     private void saveAlarm(Integer data, BaseMachineLimit machineLimit){
         String code = "";
         String propName = "";
+        Integer tData = 0;//设置阈值
         if (DataTypeEnum.LUX.getValue().equals(machineLimit.getDataType())){
             propName = "lightsensor";
         }else if (DataTypeEnum.TEMPERATURE.getValue().equals(machineLimit.getDataType())){
@@ -52,9 +53,11 @@ public class MachineLimitInterceptor implements Interceptor {
         }
         if (machineLimit.getMaxValue()<=data){
             code = prop.get(propName+".exceedsMaxValue");
+            tData = machineLimit.getMaxValue();
         }
         if (machineLimit.getMinValue()>=data){
             code = prop.get(propName+".exceedsMinValue");
+            tData = machineLimit.getMinValue();
         }
         if (StringUtils.isBlank(code)) return;
         BaseAlarmMsg baseAlarmMsg = alarmMsgService.findMaxByCode(machineLimit.getMachineId(),code);
@@ -64,6 +67,6 @@ public class MachineLimitInterceptor implements Interceptor {
                 return;
             }
         }
-        alarmMsgService.save(machineLimit.getMachineId(),code);
+        alarmMsgService.save(machineLimit.getMachineId(),code,data, tData);
     }
 }

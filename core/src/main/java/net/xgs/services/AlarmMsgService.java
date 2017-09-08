@@ -69,9 +69,15 @@ public class AlarmMsgService extends BaseService {
         return save(alarmMsg);
     }
     @Before({Tx.class})
-    public boolean save(String machineId,String msgCode){
+    public boolean save(String machineId,String msgCode,Integer data,Integer thresholdData){
         BaseMachine machine = machineService.getById(machineId);
-        return save(machine,msgCode);
+        BaseAlarmMsg alarmMsg = new BaseAlarmMsg();
+        alarmMsg.setMachineId(machine.getId());
+        alarmMsg.setMachineName(machine.getName());
+        alarmMsg.setMsgCode(msgCode);
+        alarmMsg.setMachineData(data);
+        alarmMsg.setThresholdData(thresholdData);
+        return save(alarmMsg);
     }
 
     public BaseAlarmMsg findMaxByCode(String machineId,String code){
@@ -81,7 +87,7 @@ public class AlarmMsgService extends BaseService {
 
     public Page<BaseAlarmMsg> findPageByBlockIds(Integer pageNum, Integer pageSize, String ids) {
         Page<BaseAlarmMsg> result = BaseAlarmMsg.dao.paginate(pageNum,pageSize,
-                "select machine_id,machine_name,msg_code,create_time ",
+                "select machine_id,machine_name,msg_code,create_time,machine_data ",
                 "from base_alarm_msg where block_id = ? order by create_time desc",ids);
         for (BaseAlarmMsg baseAlarmMsg:result.getList()){
             String code = cache.get(manufactor_msg_prefix+baseAlarmMsg.getMachineId());
@@ -91,6 +97,9 @@ public class AlarmMsgService extends BaseService {
                 cache.set(manufactor_msg_prefix+baseAlarmMsg.getMachineId(),code);
             }
             String msg =  prop.get(code+"."+baseAlarmMsg.getMsgCode());
+            if (baseAlarmMsg.getMachineData()!=null){
+                msg += " "+baseAlarmMsg.getMachineData()+" 当前值是:%d";
+            }
             baseAlarmMsg.put("msg_content",msg);
         }
         cache.set(block_msg_prefix+ids,0);
