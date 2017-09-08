@@ -53,7 +53,7 @@ public class ThreadPool{
 				String[] dataValues = dataValue.split(",");
 				int value = Integer.parseInt(dataValues[0], 16);
 				String code = String.valueOf(value);
-				String errcode = "fd";
+				String errcode = "253";
 				switch (deviceType) {
 				case 0x00://电动阀 
 				case 0x01://电磁阀

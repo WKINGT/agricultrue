@@ -54,8 +54,8 @@ public class CmdHandler30 extends DeviceCmdHandler {
 				byte[] valueB = new byte[2];
 				System.arraycopy(data, i, valueB, 0, 2);
 				i += 2;
-				int tempValue = BytesHelper.getUnsignedInt(valueB[0]);//空气温度
-				int humidityValue = BytesHelper.getUnsignedInt(valueB[1]);//空气湿度
+				int tempValue = (int)valueB[0];//空气温度
+				int humidityValue = (int)valueB[1];//空气湿度
 				String jionData = Integer.toHexString(tempValue)+","+Integer.toHexString(humidityValue);
 ////				machineDataService.save(baseMachine.getId(), Integer.toHexString(tempValue), DataTypeEnum.TEMPERATURE.getValue(),jionData);
 ////				machineDataService.save(baseMachine.getId(), Integer.toHexString(humidityValue), DataTypeEnum.HUMIDITY.getValue(),jionData);
