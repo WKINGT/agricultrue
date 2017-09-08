@@ -1,0 +1,6 @@
+.widget-header{
+    min-height: 28px;
+}
+.widget-header > .widget-title{
+    line-height:28px;
+}

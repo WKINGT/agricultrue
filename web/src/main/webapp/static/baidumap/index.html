@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/map.css" />
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=rqAh2byzFT7FKGSHpkcgqvNQ" charset="utf-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerTool/1.2/src/MarkerTool_min.js" charset="gbk"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<script type="text/javascript">
+	;(function(win){
+		var obj = {};
+		var type = ['String','Array','Number','Function','Object','Boolean','Date','Undefined','Null','RegExp']; 
+		for(var i=0;i<type.length;i++){ 
+			obj["is"+type[i]] = (function(str){ 
+				return function(o){return Object.prototype.toString.call(o) === '[object '+str+']' ;}; 
+			})(type[i]); 
+		}
+		win.xgs = win['xgs'] || {};
+		win.xgs.utils = obj; 
+	})(window);
+</script>
+<script type="text/javascript" src="js/jquery-1.9.0.min.js" ></script>
+<script type="text/javascript" src="js/map.js" ></script>
+</head>
+<body>
+<div style="width:700px;height:600px;float:left;" id="xmap"></div>
+<div class="width:200px;height:500px;float:left;">
+    <div class="atnd-mark-add" id="bcc">
+    	<div class="b-text"><div class="b-text-cont"><input title="搜索:地图上的点" type="text" id="suggestId" class="placeholder b-text-input search-module-input address" placeholder="搜索:地图上的点" value=""/></div></div>
+    	<!-- <div class="add-callout ">
+    		<a href="#">
+    			<img src="img/map_mark.png" class="map-mark"/>
+    			<p>点击添加标注</p>
+    		</a>
+    	</div> -->
+    </div>
+	<div class="shops" style="display: none;">
+		<p>设备地址</p>
+		<div class="shops-shop">
+    		<p href="#" onclick="xgs.bmap.getPosition(0)">设备地址</p>
+		</div>
+	</div>
+    <div class="atnd-map-cont">
+        <img id="markImg" style="position:absolute;z-index:99999;display:none;" class="atnd-mark-img" src="http://118.180.8.80/ioop-bcs-web/res/skin/default/css/img/map_mark.png"/>
+        <div id="attend_map" class="atnd-map-view"></div>
+    </div>
+    <div id="attend_marks" class="atnd-mark-list clear">
+
+    </div>
+</div>
+<!-- 添加或编辑标注 -->
+<div id="amark_edit_layer" class="eoa-dlog amark-edit-layer">
+
+</div>
+<div id="_contents" style="z-index:1000;background-color:#E3E3E3; font-size: 12px; border: 1px solid #777777; position:absolute; left:?px; top:?px; width:?px; height:?px; visibility:hidden"></div>
+<script type="text/javascript">
+$(function(){
+	var __lat = $("#lat",window.parent.document).val();
+	var _lat = (xgs.utils.isUndefined(__lat) || $.trim(__lat) == '')?'36.061394':__lat;
+	var __lng = $("#lng",window.parent.document).val();
+	var _lng = (xgs.utils.isUndefined(__lng) || $.trim(__lng) == '')?'103.781624':__lng;
+	var __point =_lat+","+_lng;
+	console.log(__point);
+	var _point = __point;
+	//_point = '36.061394,103.781624';
+	xgs.bmap.Autocomplete("suggestId");//自动完成搜索
+	xgs.bmap.init(_point);//地图初始化
+
+	if(_point != ''){
+		var xgs_p = _point.split(",");
+		xgs.bmap.initMarkers({orgLat:xgs_p[0],orgLng:xgs_p[1]});
+	}
+	$("#bcc").click(function(){
+		xgs.bmap.openAdd();
+	});
+	
+});
+
+
+</script>
+</body>
+</html>

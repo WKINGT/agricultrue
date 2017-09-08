@@ -1,0 +1,253 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>xgs.net</groupId>
+	<artifactId>agriculture</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>restful</module>
+		<module>web</module>
+		<module>core</module>
+		<module>netty</module>
+        <module>job</module>
+    </modules>
+	<properties>
+		<druid-version>1.1.0</druid-version>
+		<connector-java-version>5.1.42</connector-java-version>
+		<fastjson-version>1.2.33</fastjson-version>
+		<asm-version>5.2</asm-version>
+		<javaee-api-version>7.0</javaee-api-version>
+		<jfinal-version>3.1</jfinal-version>
+		<slf4j-version>1.7.25</slf4j-version>
+		<logback-version>1.2.3</logback-version>
+		<jedis-version>2.7.2</jedis-version>
+		<commons-pool2-version>2.4.2</commons-pool2-version>
+		<fst-version>2.43</fst-version>
+		<compiler-version>1.8</compiler-version>
+		<war-version>3.1.0</war-version>
+		<undertow-version>1.4.8.Final</undertow-version>
+		<jetty-version>8.2.0.v20160908</jetty-version>
+		<echarts-version>3.0.0.2</echarts-version>
+		<servlet-version>3.1.0</servlet-version>
+		<jstl-version>1.2</jstl-version>
+		<utils-version>1.0.020170714.013326-6</utils-version>
+		<junit-version>4.12</junit-version>
+		<socket-version>1.0.0</socket-version>
+		<!--ckfinder所需jar==开始==-->
+		<activation-version>1.1</activation-version>
+		<fileupload-version>1.2.2</fileupload-version>
+		<commons-io-version>2.4</commons-io-version>
+		<gson-version>2.5</gson-version>
+		<thumbnailator-version>0.4.8</thumbnailator-version>
+		<mail-version>1.4.1</mail-version>
+		<!--ckfinder所需jar==结束==-->
+		<zxing-version>3.2.0</zxing-version>
+		<quartz-version>2.2.1</quartz-version>
+		<bcprov-jdk14-version>138</bcprov-jdk14-version>
+		<duai-job-version>1.9.2-SNAPSHOT</duai-job-version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.socket</groupId>
+				<artifactId>socket.io-client</artifactId>
+				<version>${socket-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-servlet</artifactId>
+				<version>${undertow-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>${jetty-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>${jetty-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-jsp -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-jsp</artifactId>
+				<version>${jetty-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.github.abel533/ECharts -->
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${connector-java-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>${asm-version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee-api-version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jfinal</groupId>
+				<artifactId>jfinal</artifactId>
+				<version>${jfinal-version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-access</artifactId>
+				<version>${logback-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>${commons-pool2-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.ruedigermoeller</groupId>
+				<artifactId>fst</artifactId>
+				<version>${fst-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet-version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>xgs.net</groupId>
+				<artifactId>utils</artifactId>
+				<version>${utils-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit-version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>${activation-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${fileupload-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${mail-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.google.zxing/core 二维码支持 -->
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>${zxing-version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>${zxing-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>bouncycastle</groupId>
+				<artifactId>bcprov-jdk14</artifactId>
+				<version>${bcprov-jdk14-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.duaicxx</groupId>
+				<artifactId>Task</artifactId>
+				<version>${duai-job-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${compiler-version}</source>
+					<target>${compiler-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${war-version}</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

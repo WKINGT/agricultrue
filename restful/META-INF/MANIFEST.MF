@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Class-Path: mysql-connector-java-5.1.42.jar quartz-2.2.1.jar cglib-nod
+ ep-3.1.jar jetty-util-8.2.0.v20160908.jar javax.servlet-3.0.0.v201112
+ 011016.jar xnio-nio-3.3.6.Final.jar org.apache.taglibs.standard.glass
+ fish-1.2.0.v201112081803.jar jboss-annotations-api_1.2_spec-1.0.0.Fin
+ al.jar javax.el-2.2.0.v201108011116.jar jetty-http-8.2.0.v20160908.ja
+ r jboss-servlet-api_3.1_spec-1.0.0.Final.jar jetty-webapp-8.2.0.v2016
+ 0908.jar commons-pool2-2.4.2.jar tools.jar commons-lang-2.6.jar jacks
+ on-core-2.5.3.jar logback-core-1.2.3.jar slf4j-api-1.7.25.jar xnio-ap
+ i-3.3.6.Final.jar logback-access-1.2.3.jar jetty-servlet-8.2.0.v20160
+ 908.jar fst-2.43.jar org.eclipse.jdt.core-3.7.1.jar bcprov-jdk14-138.
+ jar javax.servlet.jsp-2.2.0.v201112011158.jar commons-logging-1.2.jar
+  c3p0-0.9.1.1.jar jetty-xml-8.2.0.v20160908.jar javassist-3.19.0-GA.j
+ ar logback-classic-1.2.3.jar jedis-2.7.2.jar jfinal-3.1.jar jetty-jsp
+ -8.2.0.v20160908.jar jconsole.jar jetty-io-8.2.0.v20160908.jar javax.
+ servlet.jsp.jstl-1.2.0.v201105211821.jar fastjson-1.2.33.jar com.sun.
+ el-2.2.0.v201108011116.jar commons-beanutils-1.9.3.jar asm-5.2.jar je
+ tty-continuation-8.2.0.v20160908.jar commons-collections-3.2.2.jar ob
+ jenesis-2.1.jar org.apache.jasper.glassfish-2.2.2.v201112011158.jar u
+ tils-1.0.020170714.013326-6.jar undertow-core-1.4.8.Final.jar jetty-s
+ ecurity-8.2.0.v20160908.jar druid-1.1.0.jar undertow-servlet-1.4.8.Fi
+ nal.jar jboss-logging-3.2.1.Final.jar jetty-server-8.2.0.v20160908.ja
+ r
+Main-Class: net.xgs.RestfulStart
+

@@ -1,0 +1,54 @@
+.tableTools-container {
+	margin-bottom: 0px;
+}
+
+.table-header {
+	background-color: #A9D1F9
+}
+/**.tableTools-container a{height:38px;}**/
+.table-striped>thead>tr {
+	font-size: 13px;
+}
+
+.table-striped>tbody>tr {
+	font-size: 12px;
+}
+
+.dataTables_length {
+	
+}
+
+.dataTables_info {
+	float: left;
+	font-size: 12px;
+	padding-right: 20px;
+	height: 30px;
+	line-height: 23px;
+}
+
+.cover {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	filter: alpha(opacity = 60);
+	z-index: 1002;
+	left: 0px;
+	display: none;
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	background: #eee;
+}
+
+.cover div {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	vertical-align: middle;
+	top: 40%;
+	font-size:12px;
+	color:#333;
+}
+.cover div i{
+	font-size:18px;
+}

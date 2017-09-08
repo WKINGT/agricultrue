@@ -1,0 +1,23 @@
+.qp{position: absolute;top: 0;bottom: 0;left: 50%;margin-left: -1.8rem;width: 3.6rem;}
+.m_header{height: .4rem;background-color: #4c942e;font-size:.18rem;color: #fff;line-height: .4rem;text-align: center;}
+.m_section{background-color: #f5f7fa;}
+.m_section ul .info{width: 93%;height: .46rem;padding: 0 .13rem;line-height: .46rem;border-bottom: 1px solid #e6e6e6;border-top:1px solid #e6e6e6;background-color: #fff; }
+.m_section ul .info:not(:nth-child(1)){margin-top: .125rem;}
+.m_section ul .plan{margin-top: 0 !important;}
+.m_section ul .info em{font-size: .15rem;float: left;color: #b3b3b3;}
+.m_section ul .info span{font-size: .17rem;float: right;color: #1a1a1a;}
+.m_section h2{color: #808080;font-size: .1rem;padding:.02rem 0 .02rem .1rem;}
+.m_section ul li .nest{line-height: 2.5;padding: 0.1rem 0 0 .2rem;}
+.m_section ul li .nest li{font-size: .15rem;float: left;width: 50%;}
+.m_section ul li .nest li i{display: inline-block;width: .24rem;height: .24rem;background-color: #4c942e;border-radius: 50%;vertical-align: middle;margin-right: .09rem;background-image: url(../image/1.png);background-repeat: no-repeat;background-size: 90%;}
+.m_section ul li .nest li u{text-decoration: none;margin-left: .05rem}
+.m_section ul li .nest li i.kwd{background-position: center .02rem;}
+.m_section ul li .nest li i.ksd{background-position: center -0.37rem;}
+.m_section ul li .nest li i.twd{background-position: center -0.73rem;}
+.m_section ul li .nest li i.tsd{background-position: center -1.11rem;}
+.m_section ul li .nest li i.gz{background-position: center -1.48rem;}
+.m_section ul li .nest li i.co{background-position: center -1.86rem;}
+.m_section p{margin-bottom: .48rem;height: auto;font-size: .15rem;color: #b3b3b3;padding: .15rem .1rem;background: #fff;line-height: 1.8;text-indent: 2em;word-break: break-word;}
+.m_footer{height: .48rem;font-size: .15rem;text-align: center;background-color: #fff;line-height: .48rem;position: fixed;bottom: 0;left: 0;right: 0;    border-top: 1px solid #e6e6e6;}
+.m_footer a{color: #4c942e;display: block;}
+.m_section ul li .nest li img{width: .24rem;height: .24rem}

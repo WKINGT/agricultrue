@@ -1,0 +1,23 @@
+.select2-selection--single{
+    border-radius: 0 !important;
+}
+.select2-search:after{
+    display: none;
+}
+.select2-container .select2-choice {
+    border-radius: 0;
+    height: 32px;
+    line-height: 30px;
+    background: #fff;
+    background-image:url('');
+    border: 0px solid #aaa;
+}
+.select2-container .select2-choice .select2-arrow{
+    border-left: 0px;
+    border-radius: 0;
+    background: #fff;
+    background-image:url();
+}
+.select2-container .select2-choice .select2-arrow b:before{
+    content:''
+}

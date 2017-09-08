@@ -1,0 +1,5 @@
+package test;
+
+public enum DecodeState {
+	WAIT_START1,WAIT_LEN,WAIT_START2,WAIT_ID,WAIT_CMD_ID,WAIT_CMD,WAIT_DATA,WAIT_CRC,WAIT_END
+}

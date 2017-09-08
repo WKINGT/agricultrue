@@ -1,0 +1,63 @@
+package net.xgs.commons.searcher;
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.jfinal.log.Log;
+
+import net.xgs.commons.utils.ClassUtils;
+
+
+@SuppressWarnings("unchecked")
+public class ClassSearcher {
+    private static final Log log = Log.getLog(ClassSearcher.class);
+    
+    public static Set<Class<?>> getClasses(List<String> packageNames, Class<? extends Annotation> annotation) {
+        String[] pkgs = packageNames.toArray(new String[packageNames.size()]);
+        return getClasses(pkgs, annotation);
+    }
+    
+    public static Set<Class<?>> getClasses(List<String> packageNames, Class<? extends Annotation>[] annotations) {
+        String[] pkgs = packageNames.toArray(new String[packageNames.size()]);
+        return getClasses(pkgs, annotations);
+    }
+    
+    public static Set<Class<?>> getClasses(String[] packageNames, Class<? extends Annotation>... annotations) {
+        final AnnotationReader reader = new AnnotationReader();
+        for (Class<? extends Annotation> annotation : annotations) {
+            reader.addAnnotation(annotation);
+        }
+        
+        final Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
+        
+        FileSearcher finder = new FileSearcher() {
+            @Override
+            public void visitFileEntry(FileEntry file) {
+                if (file.isJavaClass()) {
+                    try {
+                        if (reader.isAnnotationed(file.getInputStream())) {
+                            addClass(file.getQualifiedJavaName());
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            
+            private void addClass(String qualifiedClassName) {
+                try {
+                    Class<?> klass = ClassUtils.loadClass(qualifiedClassName);
+                    classes.add(klass);
+                } catch (Throwable e) {
+                    log.warn("Class load error.", e);
+                }
+            }
+        };
+        
+        finder.lookupClasspath(packageNames);
+        
+        return classes;
+    }
+}
