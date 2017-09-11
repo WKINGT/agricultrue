@@ -31,7 +31,7 @@
 		<echarts-version>3.0.0.2</echarts-version>
 		<servlet-version>3.1.0</servlet-version>
 		<jstl-version>1.2</jstl-version>
-		<utils-version>1.0.020170714.013326-6</utils-version>
+		<utils-version>1.0.0-SNAPSHOT</utils-version>
 		<junit-version>4.12</junit-version>
 		<socket-version>1.0.0</socket-version>
 		<!--ckfinder所需jar==开始==-->
