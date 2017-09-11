@@ -29,7 +29,7 @@
 													<input type="hidden" id="block_name" name="block_data.block_name" value="${block_data.get('block_name') }">
 													<select onchange="blockChanger()"  class="col-xs-12 col-sm-12" id="block_id" name="block_data.block_id">
 														<c:forEach var="block" items="${blocks}">
-															<option value="${block.id}" block_data="${block.name}">${block.name}</option>
+															<option value="${block.id}" block_data="${block.name}" >${block.name}</option>
 														</c:forEach>
 													</select>
 												</div>
@@ -143,15 +143,14 @@
 <script type="text/javascript" src="${ctxStatic}/js/other.js"></script>
 <script type="text/javascript">
 function blockChanger() {
-    debugger;
    var block_name = $("#block_id").find("option:selected").attr("block_data");
     $("#block_name").val(block_name);
 }
 
 $(function(){
+    blockChanger();
 	if ("${block_data.get('block_id') }"!==""){
 		$("#block_id").val("${block_data.get('block_id')}");
-        blockChanger();
     }
 	function savedata(form){
         var url = xgs.utils.setToken(location.href,'${token}');
