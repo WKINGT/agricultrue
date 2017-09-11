@@ -14,6 +14,10 @@ public class Error5xx implements Interceptor {
 	public void intercept(Invocation inv) {
 		Controller controller = inv.getController();
 		try {
+			if (inv.getActionKey().startsWith("/druid")){
+				inv.invoke();
+				return;
+			}
 			inv.invoke();
 			Object object = inv.getReturnValue();
 			controller.renderJson(new RenderJson().setCode(200).setData(object));

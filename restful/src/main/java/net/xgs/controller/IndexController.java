@@ -2,17 +2,13 @@ package net.xgs.controller;
 
 import com.jfinal.aop.Before;
 import com.jfinal.ext.interceptor.POST;
-import com.jfinal.kit.JsonKit;
 import net.xgs.commons.annotation.Controller;
 import net.xgs.commons.annotation.Inject;
 import net.xgs.entity.Constants;
 import net.xgs.entity.edomain.StatusEnum;
-import net.xgs.exception.MethodException;
-import net.xgs.interceptor.Get;
 import net.xgs.interceptor.Post;
 import net.xgs.model.BaseMember;
 import net.xgs.services.BlockMemberService;
-import net.xgs.services.MachineDataService;
 import net.xgs.services.MemberBlockDataService;
 import net.xgs.services.MemberService;
 import net.xgs.session.RestfulSession;
@@ -21,6 +17,7 @@ import net.xgs.utils.MD5Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller(value = "/a")
 public class IndexController extends BaseController {
@@ -42,6 +39,8 @@ public class IndexController extends BaseController {
 		if (member.getEnabled().equals(StatusEnum.PROHIBITED_USE.getValue())){
 			throwException("login.disabled");
 		}
+		String uuid = UUID.randomUUID().toString().replace("-","");
+		member.put("uuid",uuid);
 		member.put("block",blockMemberService.findbByMemeber(member.getId()));
 		RestfulSession session =  new RestfulSession(member.getId());
 		session.setAttribute(Constants.sessionUser,member);

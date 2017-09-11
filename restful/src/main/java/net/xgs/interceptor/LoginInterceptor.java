@@ -2,11 +2,12 @@ package net.xgs.interceptor;
 
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
-import com.jfinal.core.Controller;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import net.xgs.controller.BaseController;
-import net.xgs.exception.MethodException;
+import net.xgs.entity.Constants;
+import net.xgs.model.BaseMember;
+import net.xgs.session.RestfulSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,10 +23,13 @@ public  class LoginInterceptor implements Interceptor {
 		List<String> paths = Arrays.asList(prop.get("unauthorized.url").split(","));
 		if (!paths.contains(inv.getActionKey())){
 			logger.debug(inv.getActionKey()+"登录验证");
-			controller.getRestSession();
+			RestfulSession session =controller.getRestSession();
+			BaseMember member = (BaseMember) session.getAttribute(Constants.sessionUser);
+			String uuid = member.get("uuid");
+			if (!uuid.equals(controller.getPara("uuid"))){
+				controller.throwException("login.rewrite.login");
+			}
 		}
-
-
 		inv.invoke();
 	}
 }
