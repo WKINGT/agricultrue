@@ -4,27 +4,17 @@ import com.jfinal.aop.Enhancer;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
 import com.jfinal.config.Plugins;
-
 import com.jfinal.kit.PathKit;
-import com.jfinal.kit.Prop;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.redis.RedisPlugin;
-import com.jfinal.template.Engine;
-import net.xgs.commons.interceptors.MachineLimitInterceptor;
 import net.xgs.commons.plugin.IocPlugin;
-import net.xgs.commons.utils.StrUtils;
 import net.xgs.entity.InitData;
-import net.xgs.entity.edomain.IsShowEnum;
 import net.xgs.init.XgsConfig;
 import net.xgs.model.SysFunctions;
 import net.xgs.model.SysMenu;
-import net.xgs.model.ViewMachineBlockType;
 import net.xgs.plugins.job.QuartzPlugin;
 import net.xgs.plugins.job.QueryJob;
 import net.xgs.plugins.job.YesterdayQueryJob;
 import net.xgs.services.MachineBlockTypeService;
-import net.xgs.utils.ObjectUtils;
 
 import java.util.List;
 
