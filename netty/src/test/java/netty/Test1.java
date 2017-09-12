@@ -24,7 +24,7 @@ public class Test1 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(date1.toLocaleString());
+//		System.out.println(date1.toLocaleString());
 		
 		Calendar now = Calendar.getInstance();
 		now.setTime(date1);

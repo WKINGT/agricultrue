@@ -7,13 +7,13 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;  
-import io.netty.channel.ChannelInitializer;  
-import io.netty.channel.ChannelOption;  
-import io.netty.channel.ChannelPipeline;  
-import io.netty.channel.EventLoopGroup;  
-import io.netty.channel.nio.NioEventLoopGroup;  
-import io.netty.channel.socket.SocketChannel;  
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import msg.PackageMsg;
   
@@ -69,7 +69,7 @@ public class TestClient {
 //        byte [] a = {104, 6, 104, 17, 34, 51, 68, 85, 1, 0, 100, 01, 17, 7, 18, 11, 24, 10, 0, 22};
     	
     	Calendar now = Calendar.getInstance();
-		int year =now.get(Calendar.YEAR);
+//		int year =now.get(Calendar.YEAR);
 		int yearLast = Integer.parseInt(new SimpleDateFormat("yy",Locale.CHINESE).format(now.getTime()));
 		int month = now.get(Calendar.MONTH) + 1;
 		int day = now.get(Calendar.DAY_OF_MONTH);

@@ -59,7 +59,7 @@ public class DeviceMsgHandler {
 		byte[] cmdNobyte = new byte[2];
 		System.arraycopy(req, i, cmdNobyte, 0, 2);
 //		int cmdNo = BytesHelper.toInt(cmdNobyte);
-		short cmdNo = BytesHelper.toShort(cmdNobyte);
+//		short cmdNo = BytesHelper.toShort(cmdNobyte);
 		i = i+2;
 		//命令
 		byte cmdbyte = req[i];
@@ -75,7 +75,7 @@ public class DeviceMsgHandler {
 		}
 		
 		
-		byte crc = req[i];
+//		byte crc = req[i];
 		i++;
 		
 		if(BytesHelper.getUnsignedInt(req[i]) != ended){

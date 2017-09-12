@@ -1,8 +1,5 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -11,7 +8,7 @@ public class ReadBuf {
 	private static ByteBuf mTemp = null;
 	private static IIFrame m_frame = null;
 	private static DecodeState m_state = DecodeState.WAIT_START1;
-	private static List<IIFrame> out = new ArrayList<IIFrame>();
+//	private static List<IIFrame> out = new ArrayList<IIFrame>();
 	public static void Decode(ChannelHandlerContext ctx,ByteBuf in) {
 		boolean done = false;
 		try {

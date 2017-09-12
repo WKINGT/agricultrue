@@ -1,7 +1,5 @@
 package algorithm;
 
-import java.util.stream.IntStream;
-
 public class ChangeStringToNum {
 	public static void main(String[] args) {
 		String  s = "ab00cd+123fght456-25  3.005fgh";

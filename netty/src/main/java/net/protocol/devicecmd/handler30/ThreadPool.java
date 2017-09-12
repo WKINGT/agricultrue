@@ -85,7 +85,7 @@ public class ThreadPool{
 				case 0x42://土壤温湿度传感器
 				case 0x4A://空气温湿度传感器
 					int value1 = Integer.parseInt(dataValues[1], 16);
-					String code1 = String.valueOf(value1);
+//					String code1 = String.valueOf(value1);
 					if(value<-100||value>100) {
 						service.save(systemId, deviceId, errcode);
 					}

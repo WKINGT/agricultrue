@@ -1,8 +1,5 @@
 package test;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.jfinal.aop.Enhancer;
 
 import io.netty.channel.Channel;
@@ -11,7 +8,7 @@ import net.protocol.DeviceCmdHandler;
 import net.util.BytesHelper;
 
 public class TestHandler {
-	private Logger logger = LoggerFactory.getLogger(getClass());
+//	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	public static void channelRead0(IIFrame m_frame, ChannelHandlerContext ctx) throws Exception {
 		
@@ -20,12 +17,12 @@ public class TestHandler {
 //		logger.debug("%n=={},报文内容：{}" ,ctx.channel().remoteAddress(), Arrays.toString(req));
 //		logger.debug("%n=={},报文内容16进制：{}" ,ctx.channel().remoteAddress(), BytesHelper.byte2hex(req));
 		//数据长度
-		int length = BytesHelper.getUnsignedInt(m_frame.getLen());
+//		int length = BytesHelper.getUnsignedInt(m_frame.getLen());
 		byte[] equipmentIdbyte = m_frame.getTerminalID();
 		//命令编号
 		byte[] cmdNobyte = m_frame.getCommandID();
 		
-		short cmdNo = BytesHelper.toShort(cmdNobyte);
+//		short cmdNo = BytesHelper.toShort(cmdNobyte);
 		
 		byte cmdbyte = m_frame.getCommand();
 		int cmd = BytesHelper.getUnsignedInt(cmdbyte);//如何得到 01 or 02  0E
