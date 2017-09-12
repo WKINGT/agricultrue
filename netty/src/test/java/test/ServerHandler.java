@@ -1,20 +1,18 @@
 package test;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.jfinal.aop.Enhancer;
   
 public class ServerHandler extends ChannelInboundHandlerAdapter{  
 
 	
 //	ChannelGroup channelGroups = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 	
-	private MsgHandler mh = Enhancer.enhance(MsgHandler.class);  
+//	private MsgHandler mh = Enhancer.enhance(MsgHandler.class);  
 	
 //	public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
 ////		session.put(ctx.channel().id().asShortText(),ctx.channel());

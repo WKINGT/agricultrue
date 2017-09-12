@@ -1,7 +1,5 @@
 package netty;
 
-import com.alibaba.fastjson.JSON;
-
 public class TestEntity {
 //	private byte planNo;
 //	private byte entryNoSu;

@@ -96,12 +96,12 @@ public class ClientMsgHandler {
 			}
 			
 			
-			Object objMsg;
+//			Object objMsg;
 			try {
 				if(PropKit.use("cnf.txt").getBoolean("isprint", false)){
 					logger.debug("%n=={},报体：{}" ,ctx.channel().remoteAddress(), msg);
 				}
-				objMsg = JSON.parseObject(msg);
+//				objMsg = JSON.parseObject(msg);
 			} catch (Exception e) {
 				throw new AgriException(PropKit.use("errcode.txt").getInt("error.format"), "消息格式错误");
 			}

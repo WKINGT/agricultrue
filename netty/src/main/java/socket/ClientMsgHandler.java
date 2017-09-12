@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
-import com.jfinal.aop.Enhancer;
 import com.jfinal.kit.PropKit;
 
 import exception.AgriException;
@@ -46,9 +45,6 @@ public class ClientMsgHandler {
 		Channel incoming = ctx.channel();
 		String sysId= "0-0-0-0-0-0";
 		try {
-//			int len = req.length;
-//			logger.debug("req length:{}",req.length);
-			//read length
 			if(BytesHelper.getUnsignedInt(req[0]) != started) {
 				logger.error("不是客户端通信协议格式");
 				return false;
@@ -57,16 +53,10 @@ public class ClientMsgHandler {
 			byte[] len_b = new byte[4];
 			System.arraycopy(req, 1, len_b, 0, 4);
 			int len = Utility.byte2Int(len_b);
-//			logger.debug("data length:{}",req.length);
-			
-//			String userId=null,uuid=null,sysId=null,msg=null,cmd=null;
 			
 			byte[] src=new byte[req.length];
 			System.arraycopy(req, 5, src, 0, len);
-//			//解码
-//			byte[] dest = Codec.Decoder(src);
-//			byte[] cbyte = new byte[]{dest[0]};
-//			String client = new String(cbyte);
+
 			int i = 0;
 			byte[] version_b = new byte[3];
 			System.arraycopy(src, i, version_b, 0, 3);
@@ -103,12 +93,12 @@ public class ClientMsgHandler {
 			}
 			
 			
-			Object objMsg;
+//			Object objMsg;
 			try {
 				if(PropKit.use("cnf.txt").getBoolean("isprint", false)){
 					logger.debug("%n=={},报体：{}" ,ctx.channel().remoteAddress(), msg);
 				}
-				objMsg = JSON.parseObject(msg);
+//				objMsg = JSON.parseObject(msg);
 			} catch (Exception e) {
 				throw new AgriException(PropKit.use("errcode.txt").getInt("error.format"), "消息格式错误");
 			}
@@ -153,27 +143,4 @@ public class ClientMsgHandler {
 				+ "在线\n在线时间为："+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 	}
 
-	
-//	public void channelInactive(ChannelHandlerContext ctx)
-//			throws Exception {
-//		Channel incoming = ctx.channel();
-//		System.out.println("other:" + incoming.remoteAddress()
-//				+ "掉线\n掉线时间为："+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-//		//FIXME session remove
-//	}
-
-	
-//	public void exceptionCaught(ChannelHandlerContext ctx,
-//			Throwable cause) {
-//		Channel incoming = ctx.channel();
-//		System.out.println("other" + incoming.remoteAddress()+ "异常，异常原因："+cause.getMessage());
-//		if(cause.getClass().equals(AgriException.class)){
-//			AgriException ie = (AgriException)cause;
-////			Object obj = new ResMessage;
-////			incoming.write(obj);
-////			incoming.flush();
-//		}else{
-//			ctx.close();
-//		}
-//	}
 }

@@ -21,16 +21,18 @@ public class CmdHandler30 extends DeviceCmdHandler {
 		logger.debug("%n=={}，信息上报命令,箱子主动上报信息的data内容16进制{}" ,channel.remoteAddress(), BytesHelper.byte2hex(data));
 		
 		int i = 0;
-		byte year = data[i++];
-		byte month = data[i++];
-		byte day = data[i++];
-		byte hour = data[i++];
-		byte minute = data[i++];
-		byte second = data[i++];
+//		byte year = data[i++];
+//		byte month = data[i++];
+//		byte day = data[i++];
+//		byte hour = data[i++];
+//		byte minute = data[i++];
+//		byte second = data[i++];
+		i+=6;
 ////		String time = DateUtil.getStringTime(BytesHelper.getUnsignedInt(year), BytesHelper.getUnsignedInt(month), BytesHelper.getUnsignedInt(day), BytesHelper.getUnsignedInt(hour), BytesHelper.getUnsignedInt(minute), BytesHelper.getUnsignedInt(second));
-		byte type = data[i++];
+//		byte type = data[i++];
+		i++;
 		String systemId = BytesHelper.getSystemId(sysIdbyte);
-		int j = 1; //上报设备个数
+//		int j = 1; //上报设备个数
 		while(i!=data.length) {
 			byte[] deviceId = new byte[3];
 			System.arraycopy(data, i, deviceId, 0, 3);
@@ -86,7 +88,7 @@ public class CmdHandler30 extends DeviceCmdHandler {
 				ThreadPool.instance().execSaveReportExceptionMsg(systemId,deviceIdString,deviceType,dataValue);
 			}
 
-			j++;
+//			j++;
 		}
 		
 		return null;

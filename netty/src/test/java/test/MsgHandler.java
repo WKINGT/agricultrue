@@ -60,7 +60,7 @@ public class MsgHandler {
 		byte[] cmdNobyte = new byte[2];
 		System.arraycopy(req, i, cmdNobyte, 0, 2);
 //		int cmdNo = BytesHelper.toInt(cmdNobyte);
-		short cmdNo = BytesHelper.toShort(cmdNobyte);
+//		short cmdNo = BytesHelper.toShort(cmdNobyte);
 		i = i+2;
 		//命令
 		byte cmdbyte = req[i];
@@ -76,7 +76,7 @@ public class MsgHandler {
 		}
 		
 		
-		byte crc = req[i];
+//		byte crc = req[i];
 		i++;
 		
 		if(BytesHelper.getUnsignedInt(req[i]) != ended){
@@ -104,7 +104,7 @@ public class MsgHandler {
 		Channel incoming = ctx.channel();
 		System.out.println((isWeb ? "web" : "other") + incoming.remoteAddress()+ "异常，异常原因："+cause.getMessage());
 		if(cause.getClass().equals(AgriException.class)){
-			AgriException ie = (AgriException)cause;
+//			AgriException ie = (AgriException)cause;
 //			Object obj = new ResMessage(isWeb).setMsg(ie.getMsg()).setType(ImMsgType.msg).setMtype(ImMsgType.msgc.text).msg();
 //			incoming.write(obj);
 //			incoming.flush();
