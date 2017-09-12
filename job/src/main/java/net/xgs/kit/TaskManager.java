@@ -66,6 +66,9 @@ public class TaskManager {
      * @return
      */
     private static Date calcRunTime(Date runTime,Date nowTime,Date stopTime,int period){
+        if (nowTime.before(runTime)){//如果当前时间在运行时间之前则直接设置运行时间
+            return  runTime;
+        }
         Calendar beforeCalendar = Calendar.getInstance();
         beforeCalendar.setTime(runTime);
         Calendar afterCalendar = Calendar.getInstance();
@@ -82,6 +85,9 @@ public class TaskManager {
                     return  beforeTime;
                 else//如果已经过了上次结束任务则返回下一次开始时间
                     return  beforeCalendar.getTime();
+            }
+            if (afterCalendar.getTime().before(beforeTime)){
+                return afterCalendar.getTime();
             }
         }
     }

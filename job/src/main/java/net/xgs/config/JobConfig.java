@@ -5,18 +5,17 @@ import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
 import com.jfinal.config.Plugins;
-import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.redis.RedisPlugin;
 import com.jfinal.template.Engine;
-import net.xgs.session.RestfulSessionWrapper;
 import net.xgs.commons.plugin.IocPlugin;
 import net.xgs.core.InitJob;
 import net.xgs.handle.Handler4xx;
 import net.xgs.init.XgsConfig;
 import net.xgs.interceptor.Error5xx;
 import net.xgs.interceptor.LoginInterceptor;
+import net.xgs.session.RestfulSessionWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,12 +28,9 @@ public class JobConfig extends XgsConfig {
 	@Override
 	public void configConstant(Constants me) {
 		super.configConstant(me);
-
-		System.err.println("configConstant:>>>"+me.getBaseDownloadPath());
 	}
 	@Override
 	public void configEngine(Engine me) {
-		System.err.println("进入configEngine:>>>"+me.getBaseTemplatePath());
 		me.setBaseTemplatePath("adasdadadasdasdasdas");
 	}
 	@Override
@@ -53,14 +49,8 @@ public class JobConfig extends XgsConfig {
 		me.addGlobalActionInterceptor(new LoginInterceptor());
 	}
 	@Override
-	public void configHandler(Handlers me) {
-		// TODO Auto-generated method stub
-		me.add(new Handler4xx());
-	}
-
-	@Override
 	public void handler(Handlers me) {
-
+		me.add(new Handler4xx());
 	}
 	@Override
 	public void afterJFinalStart() {

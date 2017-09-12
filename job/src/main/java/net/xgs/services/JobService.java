@@ -1,13 +1,10 @@
 package net.xgs.services;
 
-import com.duaicxx.core.TimerTaskPool;
-import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.tx.Tx;
+import net.xgs.commons.annotation.Inject;
+import net.xgs.commons.annotation.Service;
 import net.xgs.core.InitJob;
 import net.xgs.entity.edomain.StatusEnum;
 import net.xgs.kit.TaskManager;
-import net.xgs.commons.annotation.Inject;
-import net.xgs.commons.annotation.Service;
 import net.xgs.model.BaseTaskPlanJob;
 
 /**
@@ -17,7 +14,7 @@ import net.xgs.model.BaseTaskPlanJob;
 public class JobService {
     @Inject
     TaskPlanJobService taskPlanJobService;
-    @Before(Tx.class)
+
     public boolean saveJob(BaseTaskPlanJob planJob,String optId){
         taskPlanJobService.save(planJob,optId);
         planJob = BaseTaskPlanJob.dao.findById(planJob.getId());

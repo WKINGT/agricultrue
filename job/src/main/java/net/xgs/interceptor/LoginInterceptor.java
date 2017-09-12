@@ -27,7 +27,7 @@ public  class LoginInterceptor implements Interceptor {
 			BaseMember member = (BaseMember) session.getAttribute(Constants.sessionUser);
 			String uuid = member.get("uuid");
 			if (!uuid.equals(controller.getPara("uuid"))){
-				controller.throwException("login.rewrite.login");
+				controller.throwException("login.kicked.login");
 			}
 		}
 		inv.invoke();

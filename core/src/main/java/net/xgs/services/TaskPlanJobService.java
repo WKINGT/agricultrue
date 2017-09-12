@@ -1,7 +1,9 @@
 package net.xgs.services;
 
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import net.xgs.commons.annotation.Service;
 import net.xgs.commons.utils.StrUtils;
 import net.xgs.entity.edomain.StatusEnum;
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class TaskPlanJobService extends BaseService {
+    @Before(Tx.class)
     public void save(BaseTaskPlanJob baseTaskPlanJob,String optId){
         if (StringUtils.isNotBlank(baseTaskPlanJob.getId())){
             baseTaskPlanJob.update();
@@ -26,6 +29,7 @@ public class TaskPlanJobService extends BaseService {
         baseTaskPlanJob.setId(getUUID());
         baseTaskPlanJob.save();
     }
+    @Before(Tx.class)
     public void delete(String taskId){
         Db.update("update base_task_plan_job set status = ? where id = ?", StatusEnum.PROHIBITED_USE.getValue(),taskId);
     }
@@ -38,6 +42,7 @@ public class TaskPlanJobService extends BaseService {
         Page<BaseTaskPlanJob> result = BaseTaskPlanJob.dao.paginate(pageNum,pageSize,"select * "," from base_task_plan_job where block_id in ("+ StrUtils.joinInSql(Arrays.asList(blockIds.split(",")))+") and status = ?",StatusEnum.NORMAL_USE.getValue());
         return result;
     }
+    @Before(Tx.class)
     public void updateRuntime(String id, String format) {
         Db.update("update base_task_plan_job set run_time = ? where id = ?",format,id);
     }

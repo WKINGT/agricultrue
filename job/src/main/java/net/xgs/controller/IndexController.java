@@ -58,6 +58,7 @@ public class IndexController extends BaseController {
     public Object getById(){
         Map<String,Object> result = new HashMap<>();
         TaskEntity taskEntity = TimerTaskPool.getTask(getPara("id"));
+        if (taskEntity==null) return null;
         result.put("运行时间", DateKit.format(taskEntity.getRunTime(),DateKit.FORMAT));
         result.put("结束时间",DateKit.format(taskEntity.getEndTime(),DateKit.FORMAT));
         result.put("周期",taskEntity.getUnitPeriod());
