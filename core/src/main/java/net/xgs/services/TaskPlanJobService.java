@@ -39,7 +39,7 @@ public class TaskPlanJobService extends BaseService {
     }
 
     public Page<BaseTaskPlanJob> findTaskByBlockId(Integer pageSize,Integer pageNum,String blockIds){
-        Page<BaseTaskPlanJob> result = BaseTaskPlanJob.dao.paginate(pageNum,pageSize,"select * "," from base_task_plan_job where block_id in ("+ StrUtils.joinInSql(Arrays.asList(blockIds.split(",")))+") and status = ?",StatusEnum.NORMAL_USE.getValue());
+        Page<BaseTaskPlanJob> result = BaseTaskPlanJob.dao.paginate(pageNum,pageSize,"select * "," from base_task_plan_job where block_id in ("+ StrUtils.joinInSql(Arrays.asList(blockIds.split(",")))+") and status = ?  order by create_time desc",StatusEnum.NORMAL_USE.getValue());
         return result;
     }
     @Before(Tx.class)
