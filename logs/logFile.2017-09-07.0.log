@@ -1,0 +1,49 @@
+532  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+546  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+559  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@38c6f217
+703  [main] DEBUG net.xgs.config.RestfulConfig -init routes
+703  [main] DEBUG net.xgs.config.RestfulConfig -init plugins
+703  [main] DEBUG net.xgs.config.RestfulConfig -init database..
+858  [main] DEBUG net.xgs.config.RestfulConfig -inited database..
+1918 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2305 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+2357 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.AlarmMsgController
+2646 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.BlockController
+2646 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.DataMachineController
+2647 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+2647 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineController
+2647 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineLimitController
+2647 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.TaskPlanController
+2648 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+2796 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+2802 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+2811 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+2825 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+2830 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+2834 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+2840 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+2848 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+2853 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+2858 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+2923 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+2964 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+2965 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+2973 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+2977 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+2982 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+2989 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+2993 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+2999 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+3054 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+3066 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+3073 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+3122 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+3410 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@29a60c27
+3431 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+3466 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+3960 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@52361d1d
+3960 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@6f07b3f2
+3962 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@1ced3393
+3962 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@488f20c2
+3963 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@7159c9b0
+3966 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 9999

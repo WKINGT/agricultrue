@@ -1,0 +1,710 @@
+584  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+605  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+639  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+826  [main] DEBUG net.xgs.config.JobConfig -init routes
+827  [main] DEBUG net.xgs.config.JobConfig -init plugins
+827  [main] DEBUG net.xgs.config.JobConfig -init database..
+1136 [main] DEBUG net.xgs.config.JobConfig -inited database..
+2472 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2750 [main] ERROR druid.sql.Statement -{conn-10010, stmt-20024} execute error. select * from `view_machine_type_manufactor` where 1 = 2
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'intelligent_agriculture.view_machine_type_manufactor' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:943)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2486)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2444)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2427)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.wall.WallFilter.statement_executeQuery(WallFilter.java:511)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.proxy.jdbc.StatementProxyImpl.executeQuery(StatementProxyImpl.java:227)
+	at com.alibaba.druid.pool.DruidPooledStatement.executeQuery(DruidPooledStatement.java:217)
+	at com.jfinal.plugin.activerecord.TableBuilder.doBuild(TableBuilder.java:71)
+	at com.jfinal.plugin.activerecord.TableBuilder.build(TableBuilder.java:47)
+	at com.jfinal.plugin.activerecord.ActiveRecordPlugin.start(ActiveRecordPlugin.java:218)
+	at com.jfinal.core.Config.startPlugins(Config.java:107)
+	at com.jfinal.core.Config.configJFinal(Config.java:53)
+	at com.jfinal.core.JFinal.init(JFinal.java:63)
+	at com.jfinal.core.JFinalFilter.init(JFinalFilter.java:49)
+	at io.undertow.servlet.core.LifecyleInterceptorInvocation.proceed(LifecyleInterceptorInvocation.java:111)
+	at io.undertow.servlet.core.ManagedFilter.createFilter(ManagedFilter.java:80)
+	at io.undertow.servlet.core.DeploymentManagerImpl$2.call(DeploymentManagerImpl.java:558)
+	at io.undertow.servlet.core.DeploymentManagerImpl$2.call(DeploymentManagerImpl.java:523)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:42)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at io.undertow.servlet.core.DeploymentManagerImpl.start(DeploymentManagerImpl.java:565)
+	at net.xgs.dev.UndertowStatter.start(UndertowStatter.java:32)
+	at net.xgs.JobStart.main(JobStart.java:9)
+2808 [main] ERROR com.jfinal.core.Config -Plugin start error: com.jfinal.plugin.activerecord.ActiveRecordPlugin. 
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'intelligent_agriculture.view_machine_type_manufactor' doesn't exist
+com.jfinal.plugin.activerecord.ActiveRecordException: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'intelligent_agriculture.view_machine_type_manufactor' doesn't exist
+	at com.jfinal.plugin.activerecord.TableBuilder.build(TableBuilder.java:55)
+	at com.jfinal.plugin.activerecord.ActiveRecordPlugin.start(ActiveRecordPlugin.java:218)
+	at com.jfinal.core.Config.startPlugins(Config.java:107)
+	at com.jfinal.core.Config.configJFinal(Config.java:53)
+	at com.jfinal.core.JFinal.init(JFinal.java:63)
+	at com.jfinal.core.JFinalFilter.init(JFinalFilter.java:49)
+	at io.undertow.servlet.core.LifecyleInterceptorInvocation.proceed(LifecyleInterceptorInvocation.java:111)
+	at io.undertow.servlet.core.ManagedFilter.createFilter(ManagedFilter.java:80)
+	at io.undertow.servlet.core.DeploymentManagerImpl$2.call(DeploymentManagerImpl.java:558)
+	at io.undertow.servlet.core.DeploymentManagerImpl$2.call(DeploymentManagerImpl.java:523)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:42)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at io.undertow.servlet.core.DeploymentManagerImpl.start(DeploymentManagerImpl.java:565)
+	at net.xgs.dev.UndertowStatter.start(UndertowStatter.java:32)
+	at net.xgs.JobStart.main(JobStart.java:9)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'intelligent_agriculture.view_machine_type_manufactor' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:943)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2486)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2444)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2427)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.wall.WallFilter.statement_executeQuery(WallFilter.java:511)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.proxy.jdbc.StatementProxyImpl.executeQuery(StatementProxyImpl.java:227)
+	at com.alibaba.druid.pool.DruidPooledStatement.executeQuery(DruidPooledStatement.java:217)
+	at com.jfinal.plugin.activerecord.TableBuilder.doBuild(TableBuilder.java:71)
+	at com.jfinal.plugin.activerecord.TableBuilder.build(TableBuilder.java:47)
+	... 14 common frames omitted
+1680 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2030 [main] ERROR druid.sql.Statement -{conn-10010, stmt-20024} execute error. select * from `view_machine_type_manufactor` where 1 = 2
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'intelligent_agriculture.view_machine_type_manufactor' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:943)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2486)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2444)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2427)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.wall.WallFilter.statement_executeQuery(WallFilter.java:511)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.proxy.jdbc.StatementProxyImpl.executeQuery(StatementProxyImpl.java:227)
+	at com.alibaba.druid.pool.DruidPooledStatement.executeQuery(DruidPooledStatement.java:217)
+	at com.jfinal.plugin.activerecord.TableBuilder.doBuild(TableBuilder.java:71)
+	at com.jfinal.plugin.activerecord.TableBuilder.build(TableBuilder.java:47)
+	at com.jfinal.plugin.activerecord.ActiveRecordPlugin.start(ActiveRecordPlugin.java:218)
+	at socket.StartServer.start(StartServer.java:57)
+	at socket.StartServer.main(StartServer.java:28)
+1430 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2041 [main] ERROR druid.sql.Statement -{conn-10010, stmt-20024} execute error. select * from `view_machine_type_manufactor` where 1 = 2
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'intelligent_agriculture.view_machine_type_manufactor' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:943)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2486)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2444)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2427)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.wall.WallFilter.statement_executeQuery(WallFilter.java:511)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.filter.FilterAdapter.statement_executeQuery(FilterAdapter.java:2481)
+	at com.alibaba.druid.filter.FilterEventAdapter.statement_executeQuery(FilterEventAdapter.java:302)
+	at com.alibaba.druid.filter.FilterChainImpl.statement_executeQuery(FilterChainImpl.java:2424)
+	at com.alibaba.druid.proxy.jdbc.StatementProxyImpl.executeQuery(StatementProxyImpl.java:227)
+	at com.alibaba.druid.pool.DruidPooledStatement.executeQuery(DruidPooledStatement.java:217)
+	at com.jfinal.plugin.activerecord.TableBuilder.doBuild(TableBuilder.java:71)
+	at com.jfinal.plugin.activerecord.TableBuilder.build(TableBuilder.java:47)
+	at com.jfinal.plugin.activerecord.ActiveRecordPlugin.start(ActiveRecordPlugin.java:218)
+	at socket.StartServer.start(StartServer.java:57)
+	at socket.StartServer.main(StartServer.java:28)
+2031 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2837 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+2920 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20030} enter cache
+2930 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20031} enter cache
+3045 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20032} enter cache
+1634 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2354 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+2491 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20030} enter cache
+2501 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20031} enter cache
+2555 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20032} enter cache
+2922 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20033} enter cache
+3177 [Thread-3] DEBUG i.n.c.MultithreadEventLoopGroup --Dio.netty.eventLoopThreads: 8
+3968 [Thread-3] DEBUG io.netty.channel.nio.NioEventLoop --Dio.netty.noKeySetOptimization: false
+3968 [Thread-3] DEBUG io.netty.channel.nio.NioEventLoop --Dio.netty.selectorAutoRebuildThreshold: 512
+4235 [Thread-3] DEBUG io.netty.channel.DefaultChannelId --Dio.netty.processId: 7668 (auto-detected)
+4486 [Thread-3] DEBUG io.netty.channel.DefaultChannelId --Dio.netty.machineId: 00:50:56:ff:fe:c0:00:01 (auto-detected)
+447  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+462  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+473  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+601  [main] DEBUG net.xgs.config.JobConfig -init routes
+601  [main] DEBUG net.xgs.config.JobConfig -init plugins
+601  [main] DEBUG net.xgs.config.JobConfig -init database..
+734  [main] DEBUG net.xgs.config.JobConfig -inited database..
+2148 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2897 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+3202 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+3211 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+3421 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+3444 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+3453 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+3469 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+3477 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+3483 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+3488 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+3498 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+3503 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+3507 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+3512 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+3520 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+3529 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+3529 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+3535 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+3544 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+3548 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+3554 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+3560 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+3564 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+3570 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+3580 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+3583 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+3598 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+4004 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+4019 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@1b28f282
+4042 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+4080 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+4370 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@301657db
+4370 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@6dc0af8f
+4371 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@2ecab11d
+4371 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@563e6942
+4371 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@1c05d09d
+4373 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 8899
+715  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+732  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+745  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+922  [main] DEBUG net.xgs.config.JobConfig -init routes
+923  [main] DEBUG net.xgs.config.JobConfig -init plugins
+923  [main] DEBUG net.xgs.config.JobConfig -init database..
+1070 [main] DEBUG net.xgs.config.JobConfig -inited database..
+2783 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+3102 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+3150 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+3158 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+3270 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+3288 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+3293 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+3303 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+3316 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+3324 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+3339 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+3347 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+3351 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+3356 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+3360 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+3381 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+3401 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+3401 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+3430 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+3448 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+3455 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+3463 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+3465 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+3470 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+3476 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+3486 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+3490 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+3501 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+3846 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+3863 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@4b21844c
+3882 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+3911 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+4208 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@37d594e9
+4209 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@5e611de
+4210 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@4fc58f9b
+4211 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@5fe25c31
+4211 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@5e1ff98f
+4212 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 8899
+717  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+735  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+746  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+901  [main] DEBUG net.xgs.config.JobConfig -init routes
+901  [main] ERROR net.xgs.config.JobConfig -/
+901  [main] DEBUG net.xgs.config.JobConfig -init plugins
+901  [main] DEBUG net.xgs.config.JobConfig -init database..
+1051 [main] DEBUG net.xgs.config.JobConfig -inited database..
+2615 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+3343 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+3545 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+3566 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+3963 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+3999 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+4011 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+4034 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+4074 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+4081 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+4106 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+4116 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+4127 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+4133 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+4152 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+4288 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+4296 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+4298 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+4306 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+4326 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+4332 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+4342 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+4347 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+4356 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+4367 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+4388 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+4397 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+4421 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+4918 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+4945 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@1b28f282
+4974 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+5039 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+5333 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@66cba405
+5335 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@5e611de
+5336 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@5fe25c31
+5337 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@4fc58f9b
+5337 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 8899
+5337 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@37d594e9
+550  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+569  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+586  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+769  [main] DEBUG net.xgs.config.JobConfig -init routes
+769  [main] ERROR net.xgs.config.JobConfig -BaseTemplatePath:>>>/
+769  [main] DEBUG net.xgs.config.JobConfig -init plugins
+769  [main] DEBUG net.xgs.config.JobConfig -init database..
+932  [main] DEBUG net.xgs.config.JobConfig -inited database..
+2662 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+3141 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+3256 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+3267 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+3534 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+3561 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+3572 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+3587 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+3602 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+3615 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+3624 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+3632 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+3640 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+3646 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+3651 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+3674 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+3696 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+3702 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+3715 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+3733 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+3747 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+3766 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+3773 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+3781 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+3794 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+3810 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+3819 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+3838 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+4354 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+4370 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@1b28f282
+4389 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+4434 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+4731 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@66cba405
+4731 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@37d594e9
+4733 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@392ba49d
+4733 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@5e611de
+4734 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@5fe25c31
+4736 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 8899
+484  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+498  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+510  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+628  [main] DEBUG net.xgs.config.JobConfig -init routes
+639  [main] DEBUG net.xgs.config.JobConfig -init plugins
+639  [main] DEBUG net.xgs.config.JobConfig -init database..
+790  [main] DEBUG net.xgs.config.JobConfig -inited database..
+2121 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2889 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+3017 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+3027 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+3388 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+3424 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+3434 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+3452 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+3490 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+3499 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+3518 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+3534 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+3548 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+3556 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+3620 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+3656 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+3671 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+3671 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+3680 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+3699 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+3705 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+3724 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+3730 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+3739 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+3746 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+3760 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+3765 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+3779 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+4218 [main] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+4240 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@1b28f282
+4274 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+4435 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+5009 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@5e611de
+5009 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@37d594e9
+5011 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@5fe25c31
+5012 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@4fc58f9b
+5013 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@5e1ff98f
+5018 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 8899
+627  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+642  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+653  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+799  [main] DEBUG net.xgs.config.JobConfig -init routes
+809  [main] DEBUG net.xgs.config.JobConfig -init plugins
+810  [main] DEBUG net.xgs.config.JobConfig -init database..
+975  [main] DEBUG net.xgs.config.JobConfig -inited database..
+2713 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+3526 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+4053 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+4069 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+4486 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+4558 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+4573 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+4593 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+4629 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+4644 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+4664 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+4674 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+4693 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+4698 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+4714 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+4825 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+4833 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+4834 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+4845 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+4855 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+4862 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+4871 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+4879 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+4885 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+4895 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+4904 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+4911 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+4932 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+505  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+523  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+534  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@35cabb2a
+663  [main] DEBUG net.xgs.config.JobConfig -init routes
+673  [main] DEBUG net.xgs.config.JobConfig -init plugins
+673  [main] DEBUG net.xgs.config.JobConfig -init database..
+826  [main] DEBUG net.xgs.config.JobConfig -inited database..
+2333 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+3015 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+3167 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+3181 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.JobService
+3858 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+3948 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+3959 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+3984 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+4087 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+4129 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+4231 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+4241 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+4254 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+4258 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+4285 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+4322 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+4339 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+4340 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+4350 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+4374 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+4387 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+4404 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+4414 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+4426 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+4444 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+4459 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+4470 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+579  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+617  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+645  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@38c6f217
+1172 [main] DEBUG net.xgs.config.RestfulConfig -init routes
+1182 [main] DEBUG net.xgs.config.RestfulConfig -init plugins
+1183 [main] DEBUG net.xgs.config.RestfulConfig -init database..
+2015 [main] DEBUG net.xgs.config.RestfulConfig -inited database..
+3087 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+3681 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+4516 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.AlarmMsgController
+4535 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.BlockController
+4536 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.DataMachineController
+4536 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+4536 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineController
+4537 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineLimitController
+4538 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.TaskPlanController
+4538 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+4848 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+4855 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+4870 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+4884 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+4891 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+4896 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+4903 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+4909 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+4913 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+4918 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+4924 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+4929 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+4930 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+4939 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+4944 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+4951 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+4957 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+4960 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+4963 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+4973 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+4983 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+4987 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+5155 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+5564 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@6865c751
+5591 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+5642 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+6049 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@611ccd35
+6052 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@c15bb18
+6053 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@21b02626
+6053 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@2f6ddc88
+6054 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@5cc8c9f9
+6079 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 9999
+308784 [XNIO-1 I/O-4] DEBUG io.undertow.request -Matched default handler path /data/machine/findDataByMachine
+309014 [XNIO-1 task-1] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[7e0fcc95-e9a9-4b9f-9a07-f077f143ba28], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}, authentication required: false
+309029 [XNIO-1 task-1] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@560e1761 for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[7e0fcc95-e9a9-4b9f-9a07-f077f143ba28], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+309030 [XNIO-1 task-1] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[7e0fcc95-e9a9-4b9f-9a07-f077f143ba28], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+309041 [XNIO-1 task-1] DEBUG n.xgs.interceptor.LoginInterceptor -/data/machine/findDataByMachine登录验证
+309467 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+309551 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20030} enter cache
+309692 [XNIO-1 task-1] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/data/machine/findDataByMachine]	TRENDING TIME:	[659]ms
+369742 [XNIO-1 I/O-4] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /0:0:0:0:0:0:0:1:22856
+551210 [XNIO-1 I/O-4] DEBUG io.undertow.request -Matched default handler path /data/machine/findDataByMachine
+551212 [XNIO-1 task-2] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[e69d5e04-63b3-46ff-93ab-68c8bee5aee6], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}, authentication required: false
+551213 [XNIO-1 task-2] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@560e1761 for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[e69d5e04-63b3-46ff-93ab-68c8bee5aee6], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+551214 [XNIO-1 task-2] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[e69d5e04-63b3-46ff-93ab-68c8bee5aee6], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+551215 [XNIO-1 task-2] DEBUG n.xgs.interceptor.LoginInterceptor -/data/machine/findDataByMachine登录验证
+551243 [XNIO-1 task-2] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/data/machine/findDataByMachine]	TRENDING TIME:	[29]ms
+570571 [XNIO-1 I/O-4] DEBUG io.undertow.request -Matched default handler path /data/machine/findDataByMachine
+570572 [XNIO-1 task-3] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[4df40e9f-422b-4ee1-a213-3587931c53e4], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}, authentication required: false
+570572 [XNIO-1 task-3] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@560e1761 for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[4df40e9f-422b-4ee1-a213-3587931c53e4], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+570573 [XNIO-1 task-3] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[4df40e9f-422b-4ee1-a213-3587931c53e4], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+570573 [XNIO-1 task-3] DEBUG n.xgs.interceptor.LoginInterceptor -/data/machine/findDataByMachine登录验证
+694195 [XNIO-1 task-3] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/data/machine/findDataByMachine]	TRENDING TIME:	[123622]ms
+717966 [XNIO-1 I/O-4] DEBUG io.undertow.request -Matched default handler path /data/machine/findDataByMachine
+717968 [XNIO-1 task-4] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[68a2da82-da2f-49fc-9442-c4373ba7e649], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}, authentication required: false
+717969 [XNIO-1 task-4] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@560e1761 for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[68a2da82-da2f-49fc-9442-c4373ba7e649], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+717969 [XNIO-1 task-4] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /data/machine/findDataByMachine request {Postman-Token=[68a2da82-da2f-49fc-9442-c4373ba7e649], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[57], Host=[localhost:9999]} response {}}
+717969 [XNIO-1 task-4] DEBUG n.xgs.interceptor.LoginInterceptor -/data/machine/findDataByMachine登录验证
+718001 [XNIO-1 task-4] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/data/machine/findDataByMachine]	TRENDING TIME:	[32]ms
+778052 [XNIO-1 I/O-4] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /0:0:0:0:0:0:0:1:23028
+946484 [XNIO-1 I/O-2] DEBUG io.undertow.request -Matched default handler path /alarm/findByCount
+946486 [XNIO-1 task-5] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /alarm/findByCount request {Postman-Token=[161ecf5b-46b4-4dfa-8e1e-6c0f3a79f91f], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[71], Host=[localhost:9999]} response {}}, authentication required: false
+946487 [XNIO-1 task-5] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@560e1761 for HttpServerExchange{ POST /alarm/findByCount request {Postman-Token=[161ecf5b-46b4-4dfa-8e1e-6c0f3a79f91f], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[71], Host=[localhost:9999]} response {}}
+946487 [XNIO-1 task-5] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /alarm/findByCount request {Postman-Token=[161ecf5b-46b4-4dfa-8e1e-6c0f3a79f91f], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[71], Host=[localhost:9999]} response {}}
+946488 [XNIO-1 task-5] DEBUG n.xgs.interceptor.LoginInterceptor -/alarm/findByCount登录验证
+946505 [XNIO-1 task-5] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/alarm/findByCount]	TRENDING TIME:	[18]ms
+1006535 [XNIO-1 I/O-2] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /0:0:0:0:0:0:0:1:23158
+512  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+549  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+559  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@38c6f217
+892  [main] DEBUG net.xgs.config.RestfulConfig -init routes
+904  [main] DEBUG net.xgs.config.RestfulConfig -init plugins
+904  [main] DEBUG net.xgs.config.RestfulConfig -init database..
+1871 [main] DEBUG net.xgs.config.RestfulConfig -inited database..
+3762 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+4190 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+4724 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.AlarmMsgController
+4728 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.BlockController
+4729 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.DataMachineController
+4729 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+4730 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineController
+4730 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineLimitController
+4730 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.TaskPlanController
+4730 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+4896 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+4901 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+4913 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+4924 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+4931 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+4954 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+4974 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+4989 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+5004 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+5009 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+5038 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+5050 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+5051 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+5065 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+5078 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+5083 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+5091 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+5100 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+5104 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+5113 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+5121 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+5126 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+5231 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+5494 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@6d1d4d7
+5512 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+5553 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+5993 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@2f6ddc88
+5993 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@1e6fb342
+5993 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@5cc8c9f9
+5994 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@62ffafb1
+5994 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@129675fd
+5998 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 9999
+18386 [XNIO-1 I/O-2] DEBUG io.undertow.request -Matched default handler path /alarm/findByPage
+18409 [XNIO-1 task-1] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[6dd9f903-628c-49fc-9a86-581480304557], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[58], Host=[192.168.10.95:9999]} response {}}, authentication required: false
+18411 [XNIO-1 task-1] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@448d6d3c for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[6dd9f903-628c-49fc-9a86-581480304557], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[58], Host=[192.168.10.95:9999]} response {}}
+18412 [XNIO-1 task-1] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[6dd9f903-628c-49fc-9a86-581480304557], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[58], Host=[192.168.10.95:9999]} response {}}
+18420 [XNIO-1 task-1] DEBUG n.xgs.interceptor.LoginInterceptor -/alarm/findByPage登录验证
+18806 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+18859 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20030} enter cache
+19010 [XNIO-1 task-1] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/alarm/findByPage]	TRENDING TIME:	[596]ms
+79061 [XNIO-1 I/O-2] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /192.168.10.95:27094
+481871 [XNIO-1 I/O-1] DEBUG io.undertow.request -Matched default handler path /alarm/findByPage
+481872 [XNIO-1 task-2] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[50869bae-0067-41c6-b80d-93ae18863799], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}, authentication required: false
+481874 [XNIO-1 task-2] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@448d6d3c for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[50869bae-0067-41c6-b80d-93ae18863799], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+481875 [XNIO-1 task-2] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[50869bae-0067-41c6-b80d-93ae18863799], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+481875 [XNIO-1 task-2] DEBUG n.xgs.interceptor.LoginInterceptor -/alarm/findByPage登录验证
+481886 [XNIO-1 task-2] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20031} enter cache
+481894 [XNIO-1 task-2] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36]	URL:[/alarm/findByPage]	TRENDING TIME:	[19]ms
+541944 [XNIO-1 I/O-1] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /192.168.20.45:62233
+654321 [XNIO-1 I/O-2] DEBUG io.undertow.request -Matched default handler path /alarm/findByPage
+654322 [XNIO-1 task-3] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[61fb991a-7e6e-f24e-f21a-a67158d64ed4], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}, authentication required: false
+654322 [XNIO-1 task-3] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@448d6d3c for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[61fb991a-7e6e-f24e-f21a-a67158d64ed4], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+654322 [XNIO-1 task-3] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[61fb991a-7e6e-f24e-f21a-a67158d64ed4], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+654322 [XNIO-1 task-3] DEBUG n.xgs.interceptor.LoginInterceptor -/alarm/findByPage登录验证
+654337 [XNIO-1 task-3] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36]	URL:[/alarm/findByPage]	TRENDING TIME:	[15]ms
+714360 [XNIO-1 I/O-2] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /192.168.20.45:52408
+789852 [XNIO-1 I/O-2] DEBUG io.undertow.request -Matched default handler path /alarm/findByPage
+789853 [XNIO-1 task-4] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[7959400d-ea18-2b39-b5f6-918985e1852d], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}, authentication required: false
+789853 [XNIO-1 task-4] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@448d6d3c for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[7959400d-ea18-2b39-b5f6-918985e1852d], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+789853 [XNIO-1 task-4] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[7959400d-ea18-2b39-b5f6-918985e1852d], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+789853 [XNIO-1 task-4] DEBUG n.xgs.interceptor.LoginInterceptor -/alarm/findByPage登录验证
+789878 [XNIO-1 task-4] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36]	URL:[/alarm/findByPage]	TRENDING TIME:	[25]ms
+849903 [XNIO-1 I/O-2] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /192.168.20.45:54836
+946922 [XNIO-1 I/O-3] DEBUG io.undertow.request -Matched default handler path /alarm/findByPage
+946923 [XNIO-1 task-5] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[6802b07c-7d9e-152f-acb5-1254337f88fa], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}, authentication required: false
+946923 [XNIO-1 task-5] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@448d6d3c for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[6802b07c-7d9e-152f-acb5-1254337f88fa], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+946923 [XNIO-1 task-5] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /alarm/findByPage request {Postman-Token=[6802b07c-7d9e-152f-acb5-1254337f88fa], Accept=[*/*], Accept-Language=[zh-CN,zh;q=0.8], Cache-Control=[no-cache], Accept-Encoding=[gzip, deflate], Origin=[chrome-extension://jifipfffjkhlpgionhihipfhdbdclfod], User-Agent=[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36], Connection=[keep-alive], Content-Length=[0], Host=[192.168.10.95:9999]} response {}}
+946924 [XNIO-1 task-5] DEBUG n.xgs.interceptor.LoginInterceptor -/alarm/findByPage登录验证
+946939 [XNIO-1 task-5] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36]	URL:[/alarm/findByPage]	TRENDING TIME:	[15]ms
+1006963 [XNIO-1 I/O-3] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /192.168.20.45:57395
+1774 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+1781 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+1173 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+481  [main] DEBUG org.jboss.logging -Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+496  [main] DEBUG io.undertow.session -Setting default session timeout to 1800
+506  [main] DEBUG io.undertow.session -Registered session listener io.undertow.servlet.core.SessionListenerBridge@38c6f217
+622  [main] DEBUG net.xgs.config.RestfulConfig -init routes
+631  [main] DEBUG net.xgs.config.RestfulConfig -init plugins
+631  [main] DEBUG net.xgs.config.RestfulConfig -init database..
+762  [main] DEBUG net.xgs.config.RestfulConfig -inited database..
+2026 [main] INFO  c.a.druid.pool.DruidDataSource -{dataSource-1} inited
+2486 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading annotaion
+2554 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.AlarmMsgController
+2559 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.BlockController
+2559 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.DataMachineController
+2559 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.IndexController
+2560 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineController
+2560 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.MachineLimitController
+2560 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.controller.TaskPlanController
+2560 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.AlarmMsgService
+2687 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockDataService
+2692 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockMemberService
+2707 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.BlockService
+2721 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.DayHistoryDataMachineService
+2728 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.FunctionService
+2735 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.HistoryDataMachineService
+2745 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockService
+2749 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineBlockTypeService
+2753 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineDataService
+2757 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineLimitService
+2774 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineParamService
+2784 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineService
+2785 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MachineTypeService
+2796 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.ManufactorService
+2799 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberBlockDataService
+2807 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MemberService
+2812 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuFunctionService
+2816 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.MenuService
+2819 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.OrgService
+2827 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.RoleService
+2833 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanJobService
+2839 [main] INFO  net.xgs.commons.plugin.IocPlugin -loading net.xgs.services.TaskPlanService
+2848 [main] INFO  net.xgs.commons.plugin.IocPlugin -annotation loaded 
+3058 [main] DEBUG io.undertow -starting undertow server io.undertow.Undertow@6d1d4d7
+3074 [main] INFO  org.xnio -XNIO version 3.3.6.Final
+3098 [main] INFO  org.xnio.nio -XNIO NIO Implementation Version 3.3.6.Final
+3395 [XNIO-1 I/O-2] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-2', selector sun.nio.ch.WindowsSelectorImpl@567e7725
+3395 [XNIO-1 I/O-1] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@8fbb94a
+3396 [XNIO-1 Accept] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@4c6e1ff3
+3396 [XNIO-1 I/O-4] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-4', selector sun.nio.ch.WindowsSelectorImpl@5de8d688
+3396 [XNIO-1 I/O-3] DEBUG org.xnio.nio -Started channel thread 'XNIO-1 I/O-3', selector sun.nio.ch.WindowsSelectorImpl@451d09d1
+3398 [main] DEBUG io.undertow -Configuring listener with protocol HTTP for interface 0.0.0.0 and port 9999
+34200 [XNIO-1 I/O-1] DEBUG io.undertow.request -Matched default handler path /block/findInfo
+34231 [XNIO-1 task-1] DEBUG io.undertow.request.security -Attempting to authenticate HttpServerExchange{ POST /block/findInfo request {Postman-Token=[5a4f4c2a-6e79-440f-945b-4a1903b84183], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[40], Host=[localhost:9999]} response {}}, authentication required: false
+34235 [XNIO-1 task-1] DEBUG io.undertow.request.security -Authentication outcome was NOT_ATTEMPTED with method io.undertow.security.impl.CachedAuthenticatedSessionMechanism@5d39ec14 for HttpServerExchange{ POST /block/findInfo request {Postman-Token=[5a4f4c2a-6e79-440f-945b-4a1903b84183], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[40], Host=[localhost:9999]} response {}}
+34236 [XNIO-1 task-1] DEBUG io.undertow.request.security -Authentication result was ATTEMPTED for HttpServerExchange{ POST /block/findInfo request {Postman-Token=[5a4f4c2a-6e79-440f-945b-4a1903b84183], Accept=[*/*], cache-control=[no-cache], accept-encoding=[gzip, deflate], User-Agent=[PostmanRuntime/6.1.6], Connection=[keep-alive], Content-Type=[application/x-www-form-urlencoded], content-length=[40], Host=[localhost:9999]} response {}}
+34246 [XNIO-1 task-1] DEBUG n.xgs.interceptor.LoginInterceptor -/block/findInfo登录验证
+34576 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20029} enter cache
+34581 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20030} enter cache
+110639 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20031} enter cache
+110664 [XNIO-1 task-1] DEBUG c.a.d.pool.PreparedStatementPool -{conn-10010, pstmt-20032} enter cache
+110689 [XNIO-1 task-1] INFO  net.xgs.handle.RenderingTimeHandler -User-Agent:[PostmanRuntime/6.1.6]	URL:[/block/findInfo]	TRENDING TIME:	[76449]ms
+170739 [XNIO-1 I/O-1] DEBUG io.undertow.request -UT005035: Closing channel because of parse timeout for remote address /0:0:0:0:0:0:0:1:29499
