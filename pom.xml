@@ -273,8 +273,8 @@
 						<type>runtime</type>
 						<properties>
 							<cargo.tomcat.manager.url>http://192.168.56.101:8081/manager</cargo.tomcat.manager.url>
-							<cargo.remote.username>tomcat</cargo.remote.username>
-							<cargo.remote.password>duaicxx</cargo.remote.password>
+							<cargo.remote.username>admin</cargo.remote.username>
+							<cargo.remote.password>admin</cargo.remote.password>
 							<cargo.servlet.port>8081</cargo.servlet.port>
 							<cargo.hostname>192.168.56.101</cargo.hostname>
 						</properties>
