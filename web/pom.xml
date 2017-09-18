@@ -62,4 +62,13 @@
 			<artifactId>javase</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.15</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
