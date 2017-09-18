@@ -254,6 +254,7 @@
 					<source>${compiler-version}</source>
 					<target>${compiler-version}</target>
 				</configuration>
+				<version>${compiler-version}</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
