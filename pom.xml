@@ -41,7 +41,7 @@
 		<echarts-version>3.0.0.2</echarts-version>
 		<servlet-version>3.1.0</servlet-version>
 		<jstl-version>1.2</jstl-version>
-		<utils-version>1.0.0</utils-version>
+		<utils-version>1.0.1</utils-version>
 		<junit-version>4.12</junit-version>
 		<socket-version>1.0.0</socket-version>
 		<!--ckfinder所需jar==开始==-->
@@ -56,6 +56,7 @@
 		<quartz-version>2.2.1</quartz-version>
 		<bcprov-jdk14-version>138</bcprov-jdk14-version>
 		<duai-job-version>1.9.2</duai-job-version>
+		<commons-lang-version>2.6</commons-lang-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -157,6 +158,11 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-pool2</artifactId>
 				<version>${commons-pool2-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>de.ruedigermoeller</groupId>
