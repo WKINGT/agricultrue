@@ -21,6 +21,14 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>RELEASES</id>
+			<name>RELEASES</name>
+			<url>http://192.168.10.210:8088/repository/maven-releases/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	<properties>
 		<druid-version>1.1.0</druid-version>
