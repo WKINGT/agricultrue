@@ -1,9 +1,7 @@
 package net.xgs.services;
 
-import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.annotation.Service;
 import net.xgs.commons.utils.StrUtils;
-import net.xgs.model.BaseMemberBlock;
 import net.xgs.model.ViewMachineBlockType;
 
 import java.util.Arrays;
@@ -20,6 +18,9 @@ public class MachineBlockTypeService extends BaseService {
     }
     public List<ViewMachineBlockType> findMainMachineIdByBlockIds(String[] blockIds){
        return ViewMachineBlockType.dao.find("select machine_id from view_machine_block_type where is_main = 1 and block_id in ("+ StrUtils.joinInSql(Arrays.asList(blockIds))+")");
+    }
+    public List<ViewMachineBlockType> findMainByBlockIds(String[] blockIds,String fields){
+        return ViewMachineBlockType.dao.find("select "+fields+" from view_machine_block_type where is_main = 1 and block_id in ("+ StrUtils.joinInSql(Arrays.asList(blockIds))+")");
     }
 
     /**
