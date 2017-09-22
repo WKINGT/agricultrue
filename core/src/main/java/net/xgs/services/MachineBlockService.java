@@ -45,7 +45,7 @@ public class MachineBlockService extends BaseService{
     }
 
     public List<String> findMachineIdByMember(String memberId){
-        List<ViewBlockMember> blockMembers = ViewBlockMember.dao.find("SELECT block_id FROM view_machine_block  where member_id = ?",memberId);
+        List<ViewBlockMember> blockMembers = ViewBlockMember.dao.find("SELECT block_id FROM view_member_block  where member_id = ?",memberId);
         List<String> blockIds = ObjectUtils.getMethodValue(blockMembers,"getMemberId");
         List<ViewMachineBlockType> viewMachineBlockTypes =  machineBlockTypeService.findMainByBlockIds(blockIds.toArray(new String[blockIds.size()]),"system_id");
         return ObjectUtils.getMethodValue(viewMachineBlockTypes,"getStr","system_id");
