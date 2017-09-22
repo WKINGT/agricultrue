@@ -1,36 +1,36 @@
 package net.xgs.controller.core;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jfinal.aop.Enhancer;
 import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import net.xgs.commons.annotation.Controller;
 import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.plugin.ioc.InjectUtils;
-import net.xgs.commons.utils.DateUtils;
-import net.xgs.commons.utils.StrUtils;
+import net.xgs.config.WebConfig;
 import net.xgs.entity.Constants;
 import net.xgs.entity.InitData;
 import net.xgs.entity.Msg;
-import net.xgs.entity.edomain.BooleanEnum;
-import net.xgs.entity.edomain.IsShowEnum;
 import net.xgs.entity.edomain.StatusEnum;
 import net.xgs.entity.webvo.FunctionVO;
 import net.xgs.entity.webvo.FunctionWebVO;
 import net.xgs.entity.webvo.MenuVO;
-import net.xgs.model.*;
+import net.xgs.model.BaseMember;
+import net.xgs.model.SysFunctions;
+import net.xgs.model.SysMenu;
+import net.xgs.model.ViewBlockMember;
 import net.xgs.services.*;
 import net.xgs.utils.*;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller(value = "/",viewPath = "/WEB-INF/jsp/")
 public class IndexController extends JfinalController {
+	static RSAEncrypt rsaEncrypt= new RSAEncrypt(WebConfig.RSA.get("private.key"),WebConfig.RSA.get("public.key"));
 	@Inject
 	public MenuFunctionService menuFunctionService;
 	@Inject
@@ -155,6 +155,11 @@ public class IndexController extends JfinalController {
 					}else if (StatusEnum.PROHIBITED_USE.getValue().equals(su.getEnabled())){
 						msg.setCode(1).setMsg("账户已禁用错误，请联系管理员开通！");
 					} else {
+						Map<String,String> map = new HashMap<>();
+						map.put("loginAccount",account);
+						map.put("loginPwd",pwd);
+						byte[] cipher = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JSONObject.toJSONString(map).getBytes());
+						setAttr("websocketLoginInfo",new String(cipher,"UTF-8"));
 						this.filters();
 						getSession().setAttribute(Constants.sessionUser, su);
 					}

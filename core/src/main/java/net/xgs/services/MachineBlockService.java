@@ -1,26 +1,23 @@
 package net.xgs.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.redis.Cache;
 import com.jfinal.plugin.redis.Redis;
 import net.xgs.commons.annotation.Inject;
+import net.xgs.commons.annotation.Service;
 import net.xgs.entity.Constants;
 import net.xgs.entity.webvo.TreeSelectVO;
 import net.xgs.init.XgsConfig;
-import net.xgs.model.BaseMachine;
+import net.xgs.model.*;
+import net.xgs.query.FilterBuilder;
+import net.xgs.utils.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.tx.Tx;
-
-import net.xgs.commons.annotation.Service;
-import net.xgs.model.BaseBlockMachine;
-import net.xgs.model.ViewBlockMachine;
-import net.xgs.query.FilterBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by duai on 2017-07-22.
@@ -29,6 +26,8 @@ import net.xgs.query.FilterBuilder;
 public class MachineBlockService extends BaseService{
     @Inject
     MachineService machineService;
+    @Inject
+    MachineBlockTypeService machineBlockTypeService;
     Cache cache = Redis.use(XgsConfig.prop.get("cache.redis.web.name"));
     public Page<ViewBlockMachine> page(Integer pageNumber, Integer pageSize, FilterBuilder builder){
         String select = "select * ";
@@ -45,6 +44,12 @@ public class MachineBlockService extends BaseService{
         return ViewBlockMachine.dao.paginate(pageNumber, pageSize, select, sqlExceptSelect, builder.getParams().toArray());
     }
 
+    public List<String> findMachineIdByMember(String memberId){
+        List<ViewBlockMember> blockMembers = ViewBlockMember.dao.find("SELECT block_id FROM view_machine_block  where member_id = ?",memberId);
+        List<String> blockIds = ObjectUtils.getMethodValue(blockMembers,"getMemberId");
+        List<ViewMachineBlockType> viewMachineBlockTypes =  machineBlockTypeService.findMainMachineIdByBlockIds(blockIds.toArray(new String[blockIds.size()]));
+        return ObjectUtils.getMethodValue(viewMachineBlockTypes,"getStr","machine_id");
+    }
     public ViewBlockMachine findById(String id){
         return ViewBlockMachine.dao.findById(id);
     }

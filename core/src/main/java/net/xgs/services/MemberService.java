@@ -8,9 +8,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.annotation.Service;
 import net.xgs.commons.utils.DateUtils;
-import net.xgs.commons.utils.StrUtils;
 import net.xgs.entity.Constants;
-import net.xgs.entity.edomain.BooleanEnum;
 import net.xgs.entity.edomain.StatusEnum;
 import net.xgs.model.BaseMember;
 import net.xgs.model.SysRole;
@@ -30,7 +28,7 @@ public class MemberService extends BaseService{
     @Inject
     RoleService roleService;
     @Inject
-    MenuService menuService;
+    MachineBlockService machineBlockService;
     @Inject
     OrgService orgService;
     @Inject
@@ -63,6 +61,8 @@ public class MemberService extends BaseService{
         BaseMember baseMember =  BaseMember.dao.findFirst("SELECT * FROM base_member where status = ? and login_account = ?", StatusEnum.NORMAL_USE.getValue(),account);
         if (baseMember!=null){
             if(MD5Utils.pwdValidate(pwd,baseMember.getSalt(),baseMember.getLoginPwd())){
+                List<String> mains = machineBlockService.findMachineIdByMember(baseMember.getId());
+                baseMember.put("mains",mains);
                 return baseMember;
             }
         }

@@ -5,6 +5,8 @@ import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
 import com.jfinal.config.Plugins;
 import com.jfinal.kit.PathKit;
+import com.jfinal.kit.Prop;
+import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.redis.RedisPlugin;
 import net.xgs.commons.plugin.IocPlugin;
 import net.xgs.entity.InitData;
@@ -19,6 +21,7 @@ import net.xgs.services.MachineBlockTypeService;
 import java.util.List;
 
 public class WebConfig extends XgsConfig {
+	public static Prop RSA = PropKit.use("rsa.properties");
 	@Override
 	public void plugin(Plugins me) {
 		PathKit.setWebRootPath("/");
