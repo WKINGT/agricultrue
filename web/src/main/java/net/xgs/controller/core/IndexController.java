@@ -32,13 +32,9 @@ import java.util.Map;
 public class IndexController extends JfinalController {
 	static RSAEncrypt rsaEncrypt= new RSAEncrypt(WebConfig.RSA.get("private.key"),WebConfig.RSA.get("public.key"));
 	@Inject
-	public MenuFunctionService menuFunctionService;
-	@Inject
 	public MemberService memberService;
 	@Inject
 	public FunctionService functionService;
-	@Inject
-	public RoleService roleService;
 	@Inject
 	public MenuService menuService;
 	@Inject
@@ -159,7 +155,7 @@ public class IndexController extends JfinalController {
 						map.put("loginAccount",account);
 						map.put("loginPwd",pwd);
 						byte[] cipher = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JSONObject.toJSONString(map).getBytes());
-						setAttr("websocketLoginInfo",new String(cipher,"UTF-8"));
+						getSession().setAttribute("websocketLoginInfo",new String(cipher,"UTF-8"));
 						this.filters();
 						getSession().setAttribute(Constants.sessionUser, su);
 					}

@@ -61,6 +61,7 @@
 			bStateSave : false,
 			bSort : setting.sort,
 			order : [],
+            filterMenus:[],
 			select : {
 				style : 'multi'
 			},
@@ -191,7 +192,14 @@
 		if (xgs.utils.isArray(setting.toolBarMenu)) {
 			var _ = $('<div style="margin-right:20px;"></div>');
 			menu.append(_);
-			for (var i = 0; i < setting.toolBarMenu.length; i++) {
+            toolBarMenu:for (var i = 0; i < setting.toolBarMenu.length; i++) {
+				if (!xgs.utils.isUndefined(setting.filterMenus)){
+                    for(var j = 0;j<setting.filterMenus.length;j++){
+                        if (setting.filterMenus[j]===setting.toolBarMenu[i].token){
+                            continue toolBarMenu;
+                        }
+                    }
+				}
 				var a = $('<a class="btn btn-primary btn-xs" style="margin-left:10px;border-width:1px;"><i class="fa '
 						+ setting.toolBarMenu[i].icon
 						+ '"></i>&nbsp;'

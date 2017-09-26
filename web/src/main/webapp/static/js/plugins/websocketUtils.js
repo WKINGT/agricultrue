@@ -1,0 +1,105 @@
+(function(win){
+	var obj = new Object();
+	var isLogin = false;
+	var sessions = new Array();
+	var message = {userId:"",uuid:"",msg:"",cmd:"",sysId:""};
+	var session = {sessionId:"",cmd:"",element:null};
+	var varUserId = "";
+	var socket;
+    obj.isLogin = isLogin;
+    obj.socket = socket;
+	obj.init = function(url,userId){
+		varUserId = userId;
+		if (!window.WebSocket) {
+			window.WebSocket = window.MozWebSocket;
+		}
+		if (window.WebSocket) {
+			socket = new WebSocket(url);
+			socket.onmessage = function(event) {
+                callBack(event.data);
+			};
+			socket.onopen = function(event) {
+				console.log("open")
+			};
+			socket.onclose = function(event) {
+				console.log("close")
+			};
+		} else {
+			alert("你的浏览器不支持 WebSocket！");
+		}
+	}
+	obj.heartbeat = function heartbeat(){
+		var uuid = getUUID(32,9);
+		obj.send(uuid,"",50,"");
+	}
+	obj.login = function login(data){
+		if (isLogin) { return;}
+		var uuid = getUUID(32,9);
+		sessions.push(uuid);
+		obj.send(uuid,data,40,"");
+	}
+	obj.send = function send(uuid,msg,cmd,sysId,element) {
+		saveSession(uuid,cmd,element);
+		message.uuid = uuid;
+		message.msg = msg;
+		message.userId = varUserId;
+		message.cmd = cmd;
+		message.sysId = sysId;
+		if (!window.WebSocket) {
+			return;
+		}
+		if (socket.readyState == WebSocket.OPEN) {
+			socket.send(JSON.stringify(message));
+		} else {
+			alert("连接没有开启.");
+		}
+	}
+	function saveSession(uuid,cmd,element){
+		session.sessionId = uuid;
+		session.cmd = cmd;
+		session.element = element;
+		sessions.push(session);
+	}
+	function getUUID(len, radix) {
+		 var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+		 var uuid = [], i;
+		 radix = radix || chars.length;
+		 if (len) {
+		   // Compact form
+		   for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
+		 } else {
+		   // rfc4122, version 4 form
+		   var r;
+		
+		   // rfc4122 requires these characters
+		   uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+		   uuid[14] = '4';
+		
+		   // Fill in random data.  At i==19 set the high bits of clock sequence as
+		   // per rfc4122, sec. 4.1.5
+		   for (i = 0; i < 36; i++) {
+		     if (!uuid[i]) {
+		       r = 0 | Math.random()*16;
+		       uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+		     }
+		   }
+		 }
+  		return uuid.join('');
+	}
+	function callBack(data){
+		data = JSON.parse(data);
+		if (data.cmd==="40"){
+			if (data.ms.code==="0"){
+				isLogin = true;
+				$("#loginStatus").text("状态：登录成功");
+			}else {
+                $("#loginStatus").text("状态：登录失败，请点击右侧登录按钮手动登录");
+			}
+		}
+		if (data.cmd==="24"){
+
+		}
+	}
+	win.xgs = win['xgs'] || {};
+    win.xgs.WebSocket = obj;
+})(window)

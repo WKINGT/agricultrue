@@ -37,7 +37,7 @@ public class MachineBlockService extends BaseService{
     }
 
     public Page<ViewBlockMachine> pageRestful(Integer pageNumber, Integer pageSize, FilterBuilder builder){
-        String select = "select block.*,type.is_controller AS is_controller,type.is_main AS is_main,type_image,machine_icon ";
+        String select = "select block.*,type.is_controller AS is_controller,type.is_main AS is_main,type_image,machine_icon";
         String sqlExceptSelect = "from view_machine_block block LEFT JOIN view_machine_type_manufactor type " +
                 "ON type.id = block.machine_id where 1 = 1 ";
         sqlExceptSelect += builder.getSnippets();

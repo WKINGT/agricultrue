@@ -80,5 +80,20 @@ public class BaseViewBlockMachine<M extends BaseViewBlockMachine<M>> extends Mod
     public java.lang.String getDeviceId() {
         return get("device_id");
     }
+    public void setSystemId(java.lang.String systemId) {
+        set("system_id", systemId);
+    }
+
+    public java.lang.String getSystemId() {
+        return get("system_id");
+    }
+
+    public void setIsMain(java.lang.String isMain) {
+        set("is_main", isMain);
+    }
+
+    public java.lang.String getIsMain() {
+        return get("is_main");
+    }
 
 }
