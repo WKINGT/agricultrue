@@ -13,6 +13,7 @@
 		pkid:'id',
 		title : '',
 		clomuns : [],
+        initComplete:null,
 		data : [],
 		filter:[],
 		render : null,
@@ -34,11 +35,15 @@
 			serverSide : true,// 分页，取数据等等的都放到服务端去
 			processing : true,// 载入数据的时候是否显示“载入中”
 			data : setting.data,
+			"initComplete":function callback() {
+				if (setting.initComplete!==null){
+                    setting.initComplete();
+				}
+            },
 			aoColumns : setting.aoColumns,
 			aoColumnDefs : [ {
 				sDefaultContent : '',
 				aTargets : [ '_all' ],
-
 			} ],
 			language : {
 				'emptyTable' : '没有数据',
@@ -104,18 +109,20 @@
 				});
 			}
 		});
-		myTable.on('select', function(e, dt, type, index) {
-			if (type === 'row') {
-				$(myTable.row(index).node()).find('input:checkbox').prop(
-						'checked', true);
-			}
-		});
-		myTable.on('deselect', function(e, dt, type, index) {
-			if (type === 'row') {
-				$(myTable.row(index).node()).find('input:checkbox').prop(
-						'checked', false);
-			}
-		});
+		if (setting.showCheckBox){
+            myTable.on('select', function(e, dt, type, index) {
+                if (type === 'row') {
+                    $(myTable.row(index).node()).find('input:checkbox').prop(
+                        'checked', true);
+                }
+            });
+            myTable.on('deselect', function(e, dt, type, index) {
+                if (type === 'row') {
+                    $(myTable.row(index).node()).find('input:checkbox').prop(
+                        'checked', false);
+                }
+            });
+		}
 		// ///////////////////////////////
 		// table checkboxes
 		$('th input[type=checkbox], td input[type=checkbox]').prop('checked',
@@ -138,13 +145,15 @@
 				});
 
 		// select/deselect a row when the checkbox is checked/unchecked
-		$('#dynamic-table').on('click', 'td input[type=checkbox]', function() {
-			var row = $(this).closest('tr').get(0);
-			if (!this.checked)
-				myTable.row(row).deselect();
-			else
-				myTable.row(row).select();
-		});
+        if (setting.showCheckBox){
+            $('#dynamic-table').on('click', 'td input[type=checkbox]', function() {
+                var row = $(this).closest('tr').get(0);
+                if (!this.checked)
+                    myTable.row(row).deselect();
+                else
+                    myTable.row(row).select();
+            });
+        }
 
 		$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
 			e.stopImmediatePropagation();

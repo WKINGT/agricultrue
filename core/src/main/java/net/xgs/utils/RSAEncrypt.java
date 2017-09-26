@@ -260,9 +260,9 @@ public class RSAEncrypt {
             stringBuilder.append(HEX_CHAR[(data[i] & 0xf0)>>> 4]);  
             //取出字节的低四位 作为索引得到相应的十六进制标识符  
             stringBuilder.append(HEX_CHAR[(data[i] & 0x0f)]);  
-            if (i<data.length-1){  
+           /* if (i<data.length-1){
                 stringBuilder.append(' ');  
-            }  
+            }  */
         }  
         return stringBuilder.toString();  
     }

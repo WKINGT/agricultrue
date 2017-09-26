@@ -1,6 +1,7 @@
 package net.xgs.controller.block;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.kit.JsonKit;
 import com.jfinal.plugin.activerecord.Page;
 import net.xgs.commons.annotation.Inject;
 import net.xgs.config.WebConfig;
@@ -109,8 +110,7 @@ public class BlockDataController extends BaseController {
                 }
                 return 1;
             });
-            renderHtml(JSONObject.toJSONString(page));
-        }
+            renderHtml(JsonKit.toJson(page));}
     }
 
 }

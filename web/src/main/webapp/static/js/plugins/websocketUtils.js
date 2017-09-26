@@ -2,12 +2,14 @@
 	var obj = new Object();
 	var isLogin = false;
 	var sessions = new Array();
-	var message = {userId:"",uuid:"",msg:"",cmd:"",sysId:""};
+	var message = {userId:"",uuid:"",msg:{},cmd:"",sysId:""};
 	var session = {sessionId:"",cmd:"",element:null};
 	var varUserId = "";
 	var socket;
     obj.isLogin = isLogin;
-    obj.socket = socket;
+    obj.socket = function getSocket() {
+		return socket;
+    };
 	obj.init = function(url,userId){
 		varUserId = userId;
 		if (!window.WebSocket) {
@@ -30,15 +32,26 @@
 	}
 	obj.heartbeat = function heartbeat(){
 		var uuid = getUUID(32,9);
-		obj.send(uuid,"",50,"");
+		send(uuid,"",50,"");
 	}
 	obj.login = function login(data){
 		if (isLogin) { return;}
 		var uuid = getUUID(32,9);
 		sessions.push(uuid);
-		obj.send(uuid,data,40,"");
+        if (socket.readyState == WebSocket.OPEN) {
+           send(uuid,data,40,"");
+        } else {
+            $("#loginStatus").text("状态：登录失败，请点击右侧登录按钮手动登录");
+        }
+
 	}
-	obj.send = function send(uuid,msg,cmd,sysId,element) {
+	obj.send = function outSend(objId,operation,cmd,sysId,element) {
+        var uuid = getUUID(32,9);
+        var msg = {"objId":objId,"operation":operation}
+        send(uuid,msg,cmd,sysId,element)
+    }
+
+	function send(uuid,msg,cmd,sysId,element) {
 		saveSession(uuid,cmd,element);
 		message.uuid = uuid;
 		message.msg = msg;
@@ -88,8 +101,9 @@
 	}
 	function callBack(data){
 		data = JSON.parse(data);
+		var msg = JSON.parse(data.msg);
 		if (data.cmd==="40"){
-			if (data.ms.code==="0"){
+			if (msg.code===0){
 				isLogin = true;
 				$("#loginStatus").text("状态：登录成功");
 			}else {
@@ -97,9 +111,27 @@
 			}
 		}
 		if (data.cmd==="24"){
+			var session = findSessionByUUID(data.uuid);
+            if (msg.code===0){
 
+            }else {
+                layer.msg(data.msg || '操作'+session.element.attr("machine-name")+"失败", {
+                    icon : 5,
+                    skin : 'layer-ext-moon',
+                    time : 1500
+                }, function(index) {
+                    layer.close(index);
+                })
+            }
 		}
 	}
+	function findSessionByUUID(uuid) {
+		for (var i= 0;i<sessions.length;i++){
+			if (sessions[i].uuid===uuid){
+				return sessions[i];
+			}
+		}
+    }
 	win.xgs = win['xgs'] || {};
     win.xgs.WebSocket = obj;
 })(window)

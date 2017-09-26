@@ -155,7 +155,7 @@ public class IndexController extends JfinalController {
 						map.put("loginAccount",account);
 						map.put("loginPwd",pwd);
 						byte[] cipher = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JSONObject.toJSONString(map).getBytes());
-						getSession().setAttribute("websocketLoginInfo",new String(cipher,"UTF-8"));
+						getSession().setAttribute("websocketLoginInfo",RSAEncrypt.byteArrayToString(cipher));
 						this.filters();
 						getSession().setAttribute(Constants.sessionUser, su);
 					}
