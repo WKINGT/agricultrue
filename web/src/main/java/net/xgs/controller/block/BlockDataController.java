@@ -103,6 +103,10 @@ public class BlockDataController extends BaseController {
                 if (viewBlockMachine.getIsControlData().equals(IsShowEnum.TRUE.getValueStr())){
                     viewBlockMachine.put("control_data_value",machineDataService.findByMachine(viewBlockMachine.getMachineId()).getJointData());
                 }
+                if(viewBlockMachine.getStr("is_controller").equals(IsShowEnum.TRUE.getValueStr()))
+                {
+                    viewBlockMachine.put("controller_data",machineDataService.findByMachine(viewBlockMachine.getMachineId()).getData());
+                }
             }
             Collections.sort(page.getList(), (o1, o2) -> {
                 if (o1.getIsMain().equals(IsShowEnum.TRUE.getValueStr())) {

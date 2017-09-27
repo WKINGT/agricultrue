@@ -4,13 +4,18 @@
 	var sessions = new Array();
 	var message = {userId:"",uuid:"",msg:{},cmd:"",sysId:""};
 	var session = {sessionId:"",cmd:"",element:null};
+	var heartbeatInterval = null;
 	var varUserId = "";
+	var body = null;
 	var socket;
-    obj.isLogin = isLogin;
+    obj.isLogin = function getIsLogin() {
+		return  isLogin;
+    }
     obj.socket = function getSocket() {
 		return socket;
     };
-	obj.init = function(url,userId){
+	obj.init = function(url,userId,_body){
+		body = _body;
 		varUserId = userId;
 		if (!window.WebSocket) {
 			window.WebSocket = window.MozWebSocket;
@@ -30,10 +35,20 @@
 			alert("你的浏览器不支持 WebSocket！");
 		}
 	}
-	obj.heartbeat = function heartbeat(){
-		var uuid = getUUID(32,9);
-		send(uuid,"",50,"");
+	obj.clearHeartbeat=function clearHeartbeat() {
+        window.clearInterval(heartbeatInterval);
+    }
+	function heartbeat(){
+        if (!isLogin){
+            return;
+        }
+        heartbeatInterval = setInterval(function () {
+            var uuid = getUUID(32,9);
+            send(uuid,"",50,"");
+        },45000)
+
 	}
+
 	obj.login = function login(data){
 		if (isLogin) { return;}
 		var uuid = getUUID(32,9);
@@ -64,7 +79,15 @@
 		if (socket.readyState == WebSocket.OPEN) {
 			socket.send(JSON.stringify(message));
 		} else {
-			alert("连接没有开启.");
+			obj.isLogin = false;
+            $("#loginStatus").text("状态：登录失败，请点击右侧登录按钮手动登录");
+            layer.msg(data.msg || '链接失败，请刷新重连！', {
+                icon : 5,
+                skin : 'layer-ext-moon',
+                time : 1500
+            }, function(index) {
+                layer.close(index);
+            })
 		}
 	}
 	function saveSession(uuid,cmd,element){
@@ -106,16 +129,34 @@
 			if (msg.code===0){
 				isLogin = true;
 				$("#loginStatus").text("状态：登录成功");
+                heartbeat();
 			}else {
                 $("#loginStatus").text("状态：登录失败，请点击右侧登录按钮手动登录");
 			}
 		}
 		if (data.cmd==="24"){
 			var session = findSessionByUUID(data.uuid);
+			if (xgs.utils.isUndefined(session)){//主动传输信息
+                body.find("input[device_id]").each(function (e) {
+					var that = $(this);
+					if (that.attr("device_id")===msg.objId){
+                        setStatus(that.attr("id"),msg.operationResult);
+					}
+                })
+                return;
+			}
             if (msg.code===0){
-
+                layer.msg( '操作'+session.element.attr("machine-name")+"成功", {
+                    icon : 1,
+                    skin : 'layer-ext-moon',
+                    time : 1500
+                }, function(index) {
+                    layer.close(index);
+                })
+				var id = session.element.attr("id");
+                setStatus(id,msg.operationResult);
             }else {
-                layer.msg(data.msg || '操作'+session.element.attr("machine-name")+"失败", {
+                layer.msg('操作'+session.element.attr("machine-name")+"失败", {
                     icon : 5,
                     skin : 'layer-ext-moon',
                     time : 1500
@@ -125,12 +166,34 @@
             }
 		}
 	}
+	function setStatus(id,cmd) {
+		debugger;
+        var msg_ = cmd===100?"开":"关";
+        var checked_ = cmd===100?"checked":"";
+        $("#"+id+"_msg").text("当前状态:"+msg_);
+        if (checked_===""){
+            $("#"+id).prop('checked',false);
+        }else {
+            $("#"+id).prop('checked',true);
+		}
+    }
 	function findSessionByUUID(uuid) {
 		for (var i= 0;i<sessions.length;i++){
-			if (sessions[i].uuid===uuid){
-				return sessions[i];
+			if (sessions[i].sessionId===uuid){
+				var sess = sessions[i];
+                removeSession(i);
+				return sess;
 			}
 		}
+    }
+    function removeSession(j) {
+		var sessions_new = new Array();
+        for (var i= 0;i<sessions.length;i++){
+        	if (i!==j){
+                sessions_new.push(sessions[i]);
+			}
+        }
+        sessions = sessions_new;
     }
 	win.xgs = win['xgs'] || {};
     win.xgs.WebSocket = obj;

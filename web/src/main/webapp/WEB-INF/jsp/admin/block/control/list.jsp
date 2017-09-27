@@ -21,7 +21,9 @@
 				url:url,
                 showCheckBox:false,
                 initComplete:function () {
-
+                    if(xgs.utils.isUndefined(xgs.WebSocket.socket())){
+                        xgs.WebSocket.init("${url}","${userId}",$("body"));
+                    }
                 },
 				title:'<span style="font-size: 13px;" >设备列表  <span style="margin-left: 35%" id="loginStatus"></span></span>',
 				clomuns:[
@@ -41,7 +43,6 @@
                         data: 'id',
                         title:'操作',
 						render:function (data,type,rowData) {
-                            console.log(rowData)
                             if (rowData.machineparams.length<=0||rowData.machineparams.length>2){
                                 return "当前设备无操作";
                             }
@@ -54,18 +55,19 @@
                                 }else {
                                     check_off = rowData.machineparams[i].param_command;
                                 }
-                                if (+rowData.machineparams[i].param_command===+rowData.is_control_data){
+                                if (+rowData.machineparams[i].param_command===+rowData.controller_data){
                                     status = rowData.machineparams[i].param_name;
                                 }
                             }
                             var  html = "";
-                            html += '<div  class="container_webscket" style="width: 42px">';
+							var checked =status==='开'?'checked':'';
+                            html += '<div  class="container_webscket" style="width: 42px;margin-bottom: 8px;">';
                             html += '<div class="bg_con">';
-                            html += '<input id = "'+rowData.machine_id+'" machine-name="'+rowData.machine_name+'" type="checkbox" onclick="sendMsg($(this),'+rowData+')" class="switch" check-on="'+check_on+'" check-off="'+check_off+'" />';
+                            html += '<input id = "'+rowData.machine_id+'"  device_id="'+rowData.device_id+'"  machine-name="'+rowData.machine_name+'" type="checkbox" onclick="sendMsg($(this),'+JSON.stringify(rowData).replace(/"/g, '&quot;') + ')" class="switch" check-on="'+check_on+'" check-off="'+check_off+'" '+checked+' />';
                             html += '<label for="'+rowData.machine_id+'"></label>';
                             html += '</div>';
                             html += '</div>';
-                            html += "&nbsp;<span id='"+rowData.machine_id+"_msg'>当前状态:"+status+"</span>";
+                            html += "&nbsp;<span id='"+rowData.machine_id+"_msg' >当前状态:"+status+"</span>";
                             return html;
                         }
                     }
@@ -75,17 +77,35 @@
 			});
 		});
         function sendMsg(obj,rowData) {
+            if (!xgs.WebSocket.isLogin()){
+                layer.msg('请先进行登录!', {
+                    icon : 5,
+                    skin : 'layer-ext-moon',
+                    time : 1500
+                }, function(index) {
+                    layer.close(index);
+                })
+				if (obj.is(":checked"))
+                	obj.removeAttr("checked");
+                else
+                    obj.attr("checked","checked");
+                return false;
+            }
             obj =  $(obj);
-            var cmd = obj.checked?obj.attr("check-on"):obj.attr("check-off");
+            var cmd = parseInt(obj.is(':checked')?obj.attr("check-on"):obj.attr("check-off"),16);
+            var msg = cmd===100?"开":"关";
+            var id = obj.attr("id");
+            $("#"+id+"_msg").text("当前状态:"+msg);
             xgs.WebSocket.send(rowData.device_id,cmd,24,rowData.system_id,obj);
         }
-		if(xgs.utils.isUndefined(xgs.WebSocket.socket())){
-            xgs.WebSocket.init("${url}","${userId}");
-		}
+
         loginWS();
+        setTimeout(loginWS(),500);
 		function loginWS() {
-            if(!xgs.utils.isLogin&&!xgs.utils.isUndefined(xgs.WebSocket.socket())){
+            if(!xgs.WebSocket.isLogin()&&!xgs.utils.isUndefined(xgs.WebSocket.socket())){
                 xgs.WebSocket.login('${websocketLoginInfo}');
+            }else if (xgs.WebSocket.isLogin()){
+                $("#loginStatus").text("状态：登录成功");
             }else {
                 $("#loginStatus").text("状态：登录失败，请点击右侧登录按钮手动登录");
             }
