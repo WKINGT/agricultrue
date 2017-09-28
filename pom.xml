@@ -21,6 +21,14 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>RELEASES</id>
+			<name>RELEASES</name>
+			<url>http://192.168.10.210:8088/repository/maven-releases/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	<properties>
 		<druid-version>1.1.0</druid-version>
@@ -41,7 +49,7 @@
 		<echarts-version>3.0.0.2</echarts-version>
 		<servlet-version>3.1.0</servlet-version>
 		<jstl-version>1.2</jstl-version>
-		<utils-version>1.0.0-SNAPSHOT</utils-version>
+		<utils-version>1.0.1</utils-version>
 		<junit-version>4.12</junit-version>
 		<socket-version>1.0.0</socket-version>
 		<!--ckfinder所需jar==开始==-->
@@ -55,7 +63,8 @@
 		<zxing-version>3.2.0</zxing-version>
 		<quartz-version>2.2.1</quartz-version>
 		<bcprov-jdk14-version>138</bcprov-jdk14-version>
-		<duai-job-version>1.9.2-SNAPSHOT</duai-job-version>
+		<duai-job-version>1.9.2</duai-job-version>
+		<commons-lang-version>2.6</commons-lang-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -159,6 +168,11 @@
 				<version>${commons-pool2-version}</version>
 			</dependency>
 			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang-version}</version>
+			</dependency>
+			<dependency>
 				<groupId>de.ruedigermoeller</groupId>
 				<artifactId>fst</artifactId>
 				<version>${fst-version}</version>
@@ -254,11 +268,39 @@
 					<source>${compiler-version}</source>
 					<target>${compiler-version}</target>
 				</configuration>
+				<version>3.6.0</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${war-version}</version>
 			</plugin>
 		</plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                    <executions>
+                        <execution>
+                            <id>copy-dependencies</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 	</build>
+
 </project>

@@ -56,7 +56,7 @@
                 var result = res.data;
                 $("#m_header").text(result.block_name);
                 var html = "";
-                html +='<li class="info"><em>区域面积</em><span>'+isUndefined(result.block_acreage)+'</span></li>';
+                html +='<li class="info"><em>区域面积</em><span>'+isUndefined(result.block_acreage)+'亩</span></li>';
                 html +='<li class="info"><em>区域农作物</em><span>'+isUndefined(result.block_crops)+'</span></li>';
                 html +='<li class="info"><em>预产量</em><span>'+isUndefined(result.block_throughput)+'</span></li>';
                 html +='<li class="info"><em>生产阶段</em><span>'+isUndefined(result.block_growth_stage)+'</span></li>';

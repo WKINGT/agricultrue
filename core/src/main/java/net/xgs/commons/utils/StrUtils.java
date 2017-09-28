@@ -1,17 +1,13 @@
 package net.xgs.commons.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.StrKit;
 import org.apache.commons.lang.StringUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.*;
 
 /**
  * 字符串工具类

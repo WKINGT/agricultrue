@@ -4,24 +4,14 @@ import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.redis.Cache;
 import com.jfinal.plugin.redis.Redis;
-import com.sun.org.apache.regexp.internal.RE;
-import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.annotation.Service;
 import net.xgs.commons.interceptors.MachineLimitInterceptor;
 import net.xgs.commons.utils.DateUtils;
 import net.xgs.commons.utils.StrUtils;
-import net.xgs.entity.edomain.IsShowEnum;
 import net.xgs.init.XgsConfig;
 import net.xgs.model.DataMachine;
-import net.xgs.model.ViewMachineBlockType;
-import net.xgs.model.base.BaseDataMachine;
-import net.xgs.services.BaseService;
-import net.xgs.utils.MD5Utils;
-import net.xgs.utils.ObjectUtils;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

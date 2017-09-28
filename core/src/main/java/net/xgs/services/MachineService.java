@@ -1,26 +1,25 @@
 package net.xgs.services;
 
-import java.util.List;
-
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
-
-import com.jfinal.plugin.redis.Cache;
-import com.jfinal.plugin.redis.Redis;
 import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.annotation.Service;
 import net.xgs.entity.Constants;
 import net.xgs.entity.edomain.StatusEnum;
 import net.xgs.exception.TurburException;
-import net.xgs.init.XgsConfig;
-import net.xgs.model.*;
+import net.xgs.model.BaseMachine;
+import net.xgs.model.BaseMachineMachineType;
+import net.xgs.model.BaseMachineParams;
+import net.xgs.model.ViewMachine;
 import net.xgs.query.FilterBuilder;
 import net.xgs.utils.DBUtils;
 import net.xgs.utils.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+
+import java.util.List;
 
 @Service
 public class MachineService extends BaseService {
@@ -170,7 +169,7 @@ public class MachineService extends BaseService {
 		String key = DBUtils.getRedisKey(systemId,deviceId);
 		BaseMachine machine = null;//cache.get(key);
 		if (machine==null){
-			machine = BaseMachine.dao.findFirst("select * from base_machine where system_id = ? and device_id = ?",systemId,deviceId);
+			machine = BaseMachine.dao.findFirst("select * from base_machine where system_id = ? and device_id = ? and status = ?",systemId,deviceId,StatusEnum.NORMAL_USE.getValue());
 			//cache.set(key,machine);
 		}
 		return machine;
