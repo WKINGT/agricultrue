@@ -8,6 +8,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import net.xgs.commons.annotation.Controller;
 import net.xgs.commons.annotation.Inject;
+import net.xgs.commons.annotation.Log;
 import net.xgs.commons.plugin.ioc.InjectUtils;
 import net.xgs.commons.utils.DateUtils;
 import net.xgs.commons.utils.StrUtils;
@@ -135,7 +136,7 @@ public class IndexController extends JfinalController {
 	public void captcha(){
 		this.renderCaptcha();
 	}
-
+	@Log("web登陆--controller")
 	public void login() {
 		if (isGet()) {
 			this.renderJsp("admin/login.jsp");

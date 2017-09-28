@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import net.xgs.commons.annotation.Inject;
+import net.xgs.commons.annotation.Log;
 import net.xgs.commons.annotation.Service;
 import net.xgs.commons.utils.DateUtils;
 import net.xgs.commons.utils.StrUtils;
@@ -35,6 +36,8 @@ public class MemberService extends BaseService{
     OrgService orgService;
     @Inject
     MenuFunctionService menuFunctionService;
+    
+    @Log("登陆操作")
     public BaseMember findByAccountPwd(String account, String pwd) {
         BaseMember baseMember =  BaseMember.dao.findFirst("SELECT * FROM base_member where status = ? and login_account = ?", StatusEnum.NORMAL_USE.getValue(),account);
         if (baseMember!=null){
