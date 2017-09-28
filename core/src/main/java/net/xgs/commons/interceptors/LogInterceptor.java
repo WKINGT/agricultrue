@@ -14,6 +14,7 @@ import com.jfinal.kit.JsonKit;
 
 import net.xgs.commons.annotation.Log;
 
+@SuppressWarnings("unchecked")
 public class LogInterceptor implements Interceptor{
 
 	Logger logger = LoggerFactory.getLogger(getClass());
@@ -34,6 +35,18 @@ public class LogInterceptor implements Interceptor{
 		new Thread(()->{
 			Log log = inv.getMethod().getAnnotation(Log.class);
 			if(log == null) return;
+			Object args = null;
+			
+			if(com.jfinal.core.Controller.class.isAssignableFrom(inv.getClass())){
+				args = inv.getController().getRequest().getParameterMap();
+			}else{
+				Parameter[] parameters = inv.getMethod().getParameters();
+				args = new HashMap<>();
+				for(int i=0;i<parameters.length;i++){
+					((Map<String,Object>)args).put(parameters[i].getName(), inv.getArg(i));
+				}
+			}
+			
 			String keyWord = log.describe();
 			if (log.describe().isEmpty()) {
 				 keyWord = inv.getTarget().getClass().getSimpleName() + " > "   + inv.getMethodName();
@@ -42,12 +55,7 @@ public class LogInterceptor implements Interceptor{
 			map.put("className", inv.getTarget().getClass().getName());
 			map.put("methodName", inv.getMethodName());
 			map.put("keyword", keyWord);
-			Parameter[] parameters = inv.getMethod().getParameters();
-			Map<String,Object> args = new HashMap<>();
-			for(int i=0;i<parameters.length;i++){
-				args.put(parameters[i].getName(), inv.getArg(i));
-			}
-			map.put("args", JsonKit.toJson(args));
+			map.put("args", args);
 			if(ex != null){
 				map.put("exception", ExceptionUtils.getFullStackTrace(ex));
 			}
