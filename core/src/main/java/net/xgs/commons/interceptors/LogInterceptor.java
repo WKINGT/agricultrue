@@ -36,8 +36,8 @@ public class LogInterceptor implements Interceptor{
 			Log log = inv.getMethod().getAnnotation(Log.class);
 			if(log == null) return;
 			Object args = null;
-			
-			if(com.jfinal.core.Controller.class.isAssignableFrom(inv.getClass())){
+			if(inv.getTarget() instanceof com.jfinal.core.Controller){
+//			if(com.jfinal.core.Controller.class.isAssignableFrom(inv.getClass())){
 				args = inv.getController().getRequest().getParameterMap();
 			}else{
 				Parameter[] parameters = inv.getMethod().getParameters();
@@ -47,8 +47,8 @@ public class LogInterceptor implements Interceptor{
 				}
 			}
 			
-			String keyWord = log.describe();
-			if (log.describe().isEmpty()) {
+			String keyWord = log.value();
+			if (log.value().isEmpty()) {
 				 keyWord = inv.getTarget().getClass().getSimpleName() + " > "   + inv.getMethodName();
 			}
 			Map<String,Object> map = new HashMap<>();

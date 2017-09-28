@@ -91,7 +91,6 @@ public abstract class XgsConfig extends JFinalConfig {
 	@Override
 	public void configInterceptor(Interceptors me) {
 		me.addGlobalActionInterceptor(new InjectInterceptor());
-		me.add(new LogInterceptor());
 		this.interceptor(me);
 	}
 
