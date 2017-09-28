@@ -9,12 +9,16 @@ import com.jfinal.kit.PropKit;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import msg.PackageMsg;
 import net.protocol.DeviceCmdHandler;
 import net.protocol.Protocol;
 import net.protocol.entity.OperateDeviceResp;
 import net.util.BytesHelper;
 import net.xgs.utils.RSAEncrypt;
+import session.Terminal;
+import session.UserMap;
+
 /**
  * 操作外接设备
  * @author TianW
@@ -32,7 +36,7 @@ public class CmdHandler2D extends DeviceCmdHandler {
 		byte terminalId_b = data[0];
 		byte type_b = data[1];
 		byte number_b = data[2];
-		//FIXME
+
 		String objId = BytesHelper.getTwoNumByte(BytesHelper.getUnsignedInt(terminalId_b))+"-"+
 					BytesHelper.getTwoNumByte(BytesHelper.getUnsignedInt(type_b))+"-"+
 					BytesHelper.getTwoNumByte(BytesHelper.getUnsignedInt(number_b));
@@ -51,44 +55,61 @@ public class CmdHandler2D extends DeviceCmdHandler {
 		
 		Map<String, String> msgIDtoUser = msgMapping.getMsgIdtoUser();
 		Map<String, String> msgIdtoUUID = msgMapping.getMsgIdtoUUID();
-		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
-		String userId = msgIDtoUser.get(msgId);
+//		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
+
 		String uuid = msgIdtoUUID.get(msgId);
-		//下命令用户的管道
-		Channel ch = userIdtoChannel.get(userId);
-		
-		if(userId.equals("jobId"+cmdNO)) {
-			byte[] returnMsgs;
-			Map<String,Object> respJb = new HashMap<String,Object>();
-			if(ch!=null&&operation==operationResult) {
-				respJb.put("code", 0);
-				respJb.put("uuid", uuid);
-				try {
-					returnMsgs = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JsonKit.toJson(respJb).getBytes());
-					ch.writeAndFlush(returnMsgs);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}else {
-				respJb.put("code", 1);
-				respJb.put("uuid", uuid);
-				try {
-					returnMsgs = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JsonKit.toJson(respJb).getBytes());
-					ch.writeAndFlush(returnMsgs);
-				} catch (Exception e) {
+//		String userId = msgIDtoUser.get(msgId);
+		UserMap userMap = session.getSessionMap().get(sysId);
+		for (String uid : userMap.keySet()){
+			Terminal terminal = session.getSessionMap().get(sysId).getTerminal(uid);
+			for(String client : terminal.keySet()){
+				Channel ch = terminal.getChannel(client);
+				if(ch!=null){
+					//给job端推送消息
+					if(uid.equals("jobId"+cmdNO)) {
+						byte[] returnMsgs;
+						Map<String,Object> respJb = new HashMap<String,Object>();
+						if(ch!=null&&operation==operationResult) {
+							respJb.put("code", 0);
+							respJb.put("uuid", uuid);
+							try {
+								returnMsgs = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JsonKit.toJson(respJb).getBytes());
+								ch.writeAndFlush(returnMsgs);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}else {
+							respJb.put("code", 1);
+							respJb.put("uuid", uuid);
+							try {
+								returnMsgs = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JsonKit.toJson(respJb).getBytes());
+								ch.writeAndFlush(returnMsgs);
+							} catch (Exception e) {
+							}
+						}
+						session.getSessionMap().get(sysId).remove(uid);
+					}
+					//给手机端推送消息
+					if(client.equals(Protocol.PHONE)){
+						ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.OPERATE_DEVICE, resp);
+						ch.writeAndFlush(respMsg);
+					}
+					//给web端推送消息
+					if(client.equals(Protocol.WEB)){
+						TextWebSocketFrame rMsg = PackageMsg.packingWeb(sysId,uuid,Protocol.OPERATE_DEVICE,resp);
+						ch.writeAndFlush(rMsg);
+					}
 				}
 			}
-			userIdtoChannel.remove(userId);
-			// 清除该消息的session
-			msgIDtoUser.remove(msgId);
-			msgIdtoUUID.remove(msgId);
-			return null;
 		}
+//		Channel ch = userIdtoChannel.get(userId);
 		
-		if(ch!=null) {
-			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.OPERATE_DEVICE, resp);
-			ch.writeAndFlush(respMsg);
-		}
+
+		
+//		if(ch!=null) {
+//			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.OPERATE_DEVICE, resp);
+//			ch.writeAndFlush(respMsg);
+//		}
 		// 清除该消息的session
 		msgIDtoUser.remove(msgId);
 		msgIdtoUUID.remove(msgId);

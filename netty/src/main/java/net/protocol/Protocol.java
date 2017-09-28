@@ -1,5 +1,9 @@
 package net.protocol;
 public class Protocol {
+	public final static String PHONE = "0";
+	public final static String WEB = "1";
+	public final static String JOB = "2";
+
 	/*** 手机端协议开始字节 ***/
 	public final static byte CLIENT_BEGIN_BYTE = 0x69;
 	/*** 后台协议开始字节 ***/

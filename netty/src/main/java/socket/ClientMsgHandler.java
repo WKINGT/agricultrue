@@ -5,6 +5,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.protocol.ClientCmdHandlerPool;
+import net.protocol.clientcmd.CmdHandler40;
+import net.xgs.commons.annotation.Inject;
+import net.xgs.commons.plugin.ioc.InjectUtils;
+import net.xgs.services.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,9 +107,10 @@ public class ClientMsgHandler {
 			} catch (Exception e) {
 				throw new AgriException(PropKit.use("errcode.txt").getInt("error.format"), "消息格式错误");
 			}
-			ClientCmdHandler rech = ClientCmdHandler.getHandler(String.valueOf(cmd));
-			
-			Object obj = rech.execCmd(userId, uuid, msg, sysId, incoming);
+			ClientCmdHandler rech = ClientCmdHandlerPool.getHandler(String.valueOf(cmd));
+//			System.out.println(rech.hashCode());
+			Object obj = rech.execCmd(Protocol.PHONE, userId, uuid, msg, sysId, incoming);
+			//Object obj = rech.execCmd(Protocol.WEB, userId, uuid, msg, sysId, incoming);
 			if(obj != null){
 				incoming.write(obj);
 			}

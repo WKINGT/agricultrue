@@ -1,9 +1,11 @@
 package net.protocol.devicecmd.handler30;
 
+import net.xgs.commons.annotation.Inject;
 import net.xgs.services.AlarmMsgService;
 
 public class DeviceExceptionReport {
-	private static AlarmMsgService service = new AlarmMsgService();
+	@Inject
+	private static AlarmMsgService service;
 	public static void report(String systemId,String deviceId,int deviceType,String dataValue) {
 		String[] dataValues = dataValue.split(",");
 		int value = Integer.parseInt(dataValues[0], 16);

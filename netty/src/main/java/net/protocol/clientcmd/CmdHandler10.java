@@ -16,6 +16,7 @@ import net.protocol.entity.CreatePlanCmd;
 import net.protocol.entity.CreatePlanObject;
 import net.util.BytesHelper;
 import net.util.DateUtil;
+import net.xgs.commons.annotation.Inject;
 import net.xgs.model.BaseTaskObject;
 import net.xgs.model.BaseTaskPlan;
 import net.xgs.services.MachineService;
@@ -27,9 +28,10 @@ import net.xgs.services.MachineService;
  */
 public class CmdHandler10 extends ClientCmdHandler {
 //	private TaskPlanService taskPlanService = Enhancer.enhance(TaskPlanService.class);
-	private MachineService machineService = Enhancer.enhance(MachineService.class);
+	@Inject
+	private MachineService machineService;
 	@Override
-	public Object exec(String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
+	public Object exec(String client, String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
 		CreatePlanCmd entity = null;
 		CreatePlanObject object = null;
 		byte[] data = new byte[23];

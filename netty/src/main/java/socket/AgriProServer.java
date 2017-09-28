@@ -50,7 +50,7 @@ public class AgriProServer {
              // 绑定端口，开始接收进来的连接  
              ChannelFuture future = sbs.bind(port).sync();    
                
-             System.out.println("Server start listen at " + port );  
+             System.out.println("Server starts listening at " + port );
              future.channel().closeFuture().sync();  
         } catch (Exception e) {  
             bossGroup.shutdownGracefully();  

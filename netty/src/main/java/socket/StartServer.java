@@ -1,21 +1,23 @@
 package socket;
 
-import java.util.List;
-
 import com.jfinal.aop.Enhancer;
+import com.jfinal.config.Routes;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.CaseInsensitiveContainerFactory;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
-
+import net.xgs.commons.plugin.IocPlugin;
 import net.xgs.init.InitDb;
 import net.xgs.model.ViewMachineBlockType;
 import net.xgs.model._MappingKit;
 import net.xgs.model._MappingViewKit;
 import net.xgs.services.AlarmMsgService;
 import net.xgs.services.MachineBlockTypeService;
+import websocket.WebsocketChatServer;
+
+import java.util.List;
 
 public class StartServer {
 
@@ -29,7 +31,6 @@ public class StartServer {
 	}
 	
 	public void start(){
-
 		InitDb init = null;
 		try {
 			init = (InitDb) Class.forName(prop.get("system.db")).newInstance();
@@ -59,6 +60,19 @@ public class StartServer {
 		if (prop.getBoolean("cache.enable", false)) {
 			new RedisPlugin(prop.get("cache.redis.share.name"), prop.get("cache.redis.host"), prop.getInt("cache.redis.port")).start();
 		}
+
+		Prop cfg = PropKit.use("cfg.properties");
+		Routes routes = new Routes() {
+			@Override
+			public void config() {
+
+			}
+		};
+		String[] pkgs = cfg.get("system.annotation.scan").split(",");
+		IocPlugin ioc = new IocPlugin(routes, pkgs);
+		ioc.start();
+
+
         AlarmMsgService service = new AlarmMsgService();
         String code = PropKit.use("deviceError.txt").get("dev.offline");
 		
@@ -73,6 +87,8 @@ public class StartServer {
         
         
 		new Thread(new serverStart(new AgriProServer(8888))).start();
+		new Thread(new WebServerStart(new WebsocketChatServer(8686))).start();
+
 	}
 	
 	class serverStart implements Runnable{
@@ -88,5 +104,19 @@ public class StartServer {
 			}
 		}
 		
+	}
+	class WebServerStart implements Runnable{
+		private WebsocketChatServer websocketServer;
+		public WebServerStart(WebsocketChatServer websocketServer){
+			this.websocketServer = websocketServer;
+		}
+		public void run() {
+			try {
+				this.websocketServer.run();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }

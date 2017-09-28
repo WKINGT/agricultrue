@@ -41,15 +41,15 @@ public class CmdHandler2 extends DeviceCmdHandler {
 		
 		Map<String, String> msgIDtoUser = msgMapping.getMsgIdtoUser();
 		Map<String, String> msgIdtoUUID = msgMapping.getMsgIdtoUUID();
-		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
+//		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
 		String userId = msgIDtoUser.get(msgId);
 		String uuid = msgIdtoUUID.get(msgId);
 		//下命令用户的管道
-		Channel ch = userIdtoChannel.get(userId);
-		if(ch!=null) {
-			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.GET_TIME, resp);
-			ch.writeAndFlush(respMsg);
-		}
+//		Channel ch = userIdtoChannel.get(userId);
+//		if(ch!=null) {
+//			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.GET_TIME, resp);
+//			ch.writeAndFlush(respMsg);
+//		}
 		// 清除该消息的session
 		msgIDtoUser.remove(msgId);
 		msgIdtoUUID.remove(msgId);

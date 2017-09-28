@@ -4,6 +4,7 @@ import com.jfinal.kit.JsonKit;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import net.protocol.Protocol;
 import net.util.BytesHelper;
 import net.util.Utility;
@@ -69,5 +70,9 @@ public class PackageMsg {
 		System.arraycopy(all, 0, rMsg, 4, length);
 
 		return Unpooled.copiedBuffer(rMsg);
+	}
+	public static TextWebSocketFrame packingWeb(String sysId, String uuid, short cmd, Object body) {
+		RespMsg respmsg = new RespMsg(uuid,JsonKit.toJson(body),String.valueOf(cmd),sysId);
+		return new TextWebSocketFrame(JsonKit.toJson(respmsg));
 	}
 }

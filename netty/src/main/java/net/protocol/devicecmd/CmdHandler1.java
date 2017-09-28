@@ -10,6 +10,9 @@ import net.protocol.Protocol;
 import net.protocol.entity.GetTimeResp;
 import net.util.BytesHelper;
 import net.util.DateUtil;
+import session.Terminal;
+import session.UserMap;
+
 /**
  * 设置系统时钟命令
  * @author TianW
@@ -38,15 +41,19 @@ public class CmdHandler1 extends DeviceCmdHandler {
 		
 		Map<String, String> msgIDtoUser = msgMapping.getMsgIdtoUser();
 		Map<String, String> msgIdtoUUID = msgMapping.getMsgIdtoUUID();
-		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
+//		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
 		String userId = msgIDtoUser.get(msgId);
 		String uuid = msgIdtoUUID.get(msgId);
 		//下命令用户的管道
-		Channel ch = userIdtoChannel.get(userId);
-		if(ch!=null) {
-			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.SET_TIME, resp);
-			ch.writeAndFlush(respMsg);
+		UserMap userMap = session.getSessionMap().get(sysId);
+		for(String uid : userMap.keySet()){
+
 		}
+//		Channel ch = userIdtoChannel.get(userId);
+//		if(ch!=null) {
+//			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.SET_TIME, resp);
+//			ch.writeAndFlush(respMsg);
+//		}
 		//清除该消息的session
 		msgIDtoUser.remove(msgId);
 		msgIdtoUUID.remove(msgId);

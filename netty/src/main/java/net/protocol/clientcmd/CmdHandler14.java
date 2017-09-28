@@ -21,7 +21,7 @@ import net.util.BytesHelper;
 public class CmdHandler14 extends ClientCmdHandler {
 	
 	@Override
-	public Object exec(String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
+	public Object exec(String client, String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
 		DeletePlanCmd entity = null;
 		byte[] data = new byte[1];
 		try {

@@ -20,7 +20,7 @@ import net.util.BytesHelper;
 public class CmdHandler21 extends ClientCmdHandler {
 
 	@Override
-	public Object exec(String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
+	public Object exec(String client, String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
 		
 		// 给箱子发送命令
 		
