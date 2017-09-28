@@ -1,5 +1,6 @@
 package net.xgs.commons.interceptors;
 
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,22 +30,29 @@ public class LogInterceptor implements Interceptor{
 		
 	}
 	private void print(Invocation inv,Throwable ex){
-		//FIXME 异步执行
-		Log log = inv.getMethod().getAnnotation(Log.class);
-		if(log == null) return;
-		String keyWord = log.describe();
-		if (log.describe().isEmpty()) {
-			 keyWord = inv.getTarget().getClass().getSimpleName() + " > "   + inv.getMethodName();
-		}
-		Map<String,Object> map = new HashMap<>();
-		map.put("className", inv.getTarget().getClass().getName());
-		map.put("methodName", inv.getMethodName());
-		map.put("keyword", keyWord);
-		map.put("args", JsonKit.toJson(inv.getArgs()));
-		if(ex != null){
-			map.put("exception", ExceptionUtils.getFullStackTrace(ex));
-		}
-		logger.info(JsonKit.toJson(map));
+		//java 在编译的时候 加    -parameter
+		new Thread(()->{
+			Log log = inv.getMethod().getAnnotation(Log.class);
+			if(log == null) return;
+			String keyWord = log.describe();
+			if (log.describe().isEmpty()) {
+				 keyWord = inv.getTarget().getClass().getSimpleName() + " > "   + inv.getMethodName();
+			}
+			Map<String,Object> map = new HashMap<>();
+			map.put("className", inv.getTarget().getClass().getName());
+			map.put("methodName", inv.getMethodName());
+			map.put("keyword", keyWord);
+			Parameter[] parameters = inv.getMethod().getParameters();
+			Map<String,Object> args = new HashMap<>();
+			for(int i=0;i<parameters.length;i++){
+				args.put(parameters[i].getName(), inv.getArg(i));
+			}
+			map.put("args", JsonKit.toJson(args));
+			if(ex != null){
+				map.put("exception", ExceptionUtils.getFullStackTrace(ex));
+			}
+			logger.info(JsonKit.toJson(map));
+		}).start();
 	}
 	private void print(Invocation inv){
 		this.print(inv, null);

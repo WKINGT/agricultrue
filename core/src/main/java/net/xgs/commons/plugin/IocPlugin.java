@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import net.xgs.commons.annotation.Controller;
 import net.xgs.commons.annotation.Service;
+import net.xgs.commons.interceptors.LogInterceptor;
 import net.xgs.commons.plugin.ioc.InjectUtils;
 import net.xgs.commons.plugin.ioc.IocKit;
 import net.xgs.commons.searcher.ClassSearcher;
@@ -47,7 +48,7 @@ public class IocPlugin implements IPlugin {
 			}
 			
 			String beanName = clazz.getName();
-			Object enhanceBean = Enhancer.enhance(clazz);
+			Object enhanceBean = Enhancer.enhance(clazz,new LogInterceptor());
 			if (iocBeanMap.containsKey(beanName)) {
 				logger.warn("bean:" + beanName + " reloading!");
 			}

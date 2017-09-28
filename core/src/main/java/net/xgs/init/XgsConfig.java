@@ -21,6 +21,7 @@ import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.template.Engine;
 
 import net.xgs.commons.interceptors.InjectInterceptor;
+import net.xgs.commons.interceptors.LogInterceptor;
 import net.xgs.commons.logs.LogPrintStream;
 import net.xgs.commons.logs.SLF4JLogFactory;
 import net.xgs.commons.session.SessionRepositoryRequestWrapper;
@@ -90,6 +91,7 @@ public abstract class XgsConfig extends JFinalConfig {
 	@Override
 	public void configInterceptor(Interceptors me) {
 		me.addGlobalActionInterceptor(new InjectInterceptor());
+		me.add(new LogInterceptor());
 		this.interceptor(me);
 	}
 
