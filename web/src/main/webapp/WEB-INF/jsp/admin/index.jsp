@@ -49,6 +49,55 @@
 			}
 
 		</style>
+		<style type="text/css">
+			.container_webscket .switch{
+				display:none !important;
+			}
+			.container_webscket label{
+				position:relative !important;
+				display: block !important;
+				padding: 1px !important;
+				border-radius: 24px !important;
+				height: 22px !important;
+				margin-bottom: 0!important;
+				background-color: #eee !important;
+				cursor: pointer !important;
+				vertical-align: top !important;
+				-webkit-user-select: none !important;
+			}
+			.container_webscket label:before{
+				content: '' !important;
+				width: 62px !important;
+				display: block !important;
+				border-radius: 24px !important;
+				height: 22px !important;
+				background-color: red !important;
+				-webkit-transform: scale(1, 1) !important;
+				-webkit-transition: all 0.3s ease !important;
+			}
+			.container_webscket label:after{
+				content: '' !important;
+				position: absolute !important;
+				top: 50% !important;
+				left: 50% !important;
+				margin-top: -10px !important;
+				margin-left: -11px !important;
+				width: 22px !important;
+				height: 22px !important;
+				border-radius: 22px !important;
+				background-color: white !important;
+				box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.08) !important;
+				-webkit-transform: translateX(-9px) !important;
+				-webkit-transition: all 0.3s ease !important;
+			}
+			.container_webscket .switch:checked~label:after{
+				-webkit-transform: translateX(32px) !important;
+			}
+
+			.container_webscket .switch:checked~label:before{
+				background-color:green !important;
+			}
+		</style>
 	</head>
 
 	<body class="no-skin">
@@ -421,7 +470,7 @@
 
 							</c:forEach>
 						</div>
-							<!-- #section:settings.box -->
+						<!-- #section:settings.box -->
 						<!-- /.ace-settings-container -->
 
 						<!-- /section:settings.box -->

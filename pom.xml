@@ -55,7 +55,7 @@
 		<zxing-version>3.2.0</zxing-version>
 		<quartz-version>2.2.1</quartz-version>
 		<bcprov-jdk14-version>138</bcprov-jdk14-version>
-		<duai-job-version>1.9.2-SNAPSHOT</duai-job-version>
+		<duai-job-version>1.9.3</duai-job-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>

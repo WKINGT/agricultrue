@@ -1,29 +1,24 @@
 package net.xgs.utils;
-  
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.security.InvalidKeyException;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+
+import com.jfinal.kit.Prop;
+import com.jfinal.kit.PropKit;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import sun.misc.BASE64Decoder;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
-import sun.misc.BASE64Decoder;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.security.*;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 
 @SuppressWarnings("restriction")
@@ -265,10 +260,16 @@ public class RSAEncrypt {
             stringBuilder.append(HEX_CHAR[(data[i] & 0xf0)>>> 4]);  
             //取出字节的低四位 作为索引得到相应的十六进制标识符  
             stringBuilder.append(HEX_CHAR[(data[i] & 0x0f)]);  
-            if (i<data.length-1){  
+           /* if (i<data.length-1){
                 stringBuilder.append(' ');  
-            }  
+            }  */
         }  
         return stringBuilder.toString();  
-    }  
+    }
+
+    public static void main(String[] args) {
+        Prop RSA = PropKit.use("rsa.properties");
+         RSAEncrypt rsaEncrypt= new RSAEncrypt(RSA.get("private.key").replace("\n",""),RSA.get("public.key").replace("\n",""));
+        System.out.printf("");
+    }
 }

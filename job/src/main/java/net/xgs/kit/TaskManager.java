@@ -31,22 +31,25 @@ public class TaskManager {
         //获取当前时间
         Date nowDate = new Date();
         //计算结束时间
-        Date job2Date = DateUtils.add(DateKit.format(baseTaskPlanJob.getRunTime()),Calendar.SECOND,baseTaskPlanJob.getDuration());
+        Date job2Date = DateUtils.add(DateKit.format(baseTaskPlanJob.getRunTime()),Calendar.MINUTE,baseTaskPlanJob.getDuration());
         //计算发送开始命令时间(如果当前时间在发送开始命令与发送结束命令之间则创建当前任务)
         //如果这个发送命令不在当前区间则创建下一次任发送命令
         Date job1Date = calcRunTime(DateKit.format(baseTaskPlanJob.getRunTime()),nowDate,job2Date,baseTaskPlanJob.getPeriod());
 
         TaskEntity job1 = new TaskEntity().setEndTime(DateKit.format(baseTaskPlanJob.getEndTime())).setId(CommandEnum.START.getValue()+baseTaskPlanJob.getId());
-        job1.setRunTime(job1Date).putUnitPeriod(Calendar.MINUTE,baseTaskPlanJob.getPeriod());
+        job1.setRunTime(job1Date).putUnitPeriod(Calendar.DAY_OF_MONTH,baseTaskPlanJob.getPeriod());
         job1.setTaskExecute(new SendMsgJob(baseTaskPlanJob, CommandEnum.START.getValue()));
         TimerTaskPool.addJob(new TaskImpl(job1));
+        /*if (job1Date.before(nowDate)){
+            TimerTaskPool.startJob(job1.getId());
+        }*/
         startMap.put(baseTaskPlanJob.getId(),job1.getId());
         //使用创建发送的命令时间计算发送结束命令的任务
-        job2Date = DateUtils.add(job1Date,Calendar.SECOND,baseTaskPlanJob.getDuration());
+        job2Date = DateUtils.add(job1Date,Calendar.MINUTE,baseTaskPlanJob.getDuration());
         TaskEntity job2 = new TaskEntity().setEndTime(DateKit.format(baseTaskPlanJob.getEndTime())).setId(CommandEnum.STOP.getValue()+baseTaskPlanJob.getId());
         job2.setTaskExecute(new SendMsgJob(baseTaskPlanJob, CommandEnum.STOP.getValue()));
         job2.setRunTime(job2Date).
-                putUnitPeriod(Calendar.MINUTE,baseTaskPlanJob.getPeriod());
+                putUnitPeriod(Calendar.DAY_OF_MONTH,baseTaskPlanJob.getPeriod());
         TimerTaskPool.addJob(new TaskImpl(job2));
         endMap.put(baseTaskPlanJob.getId(),job2.getId());
         return true;

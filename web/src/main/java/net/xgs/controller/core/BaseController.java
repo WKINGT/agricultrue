@@ -248,6 +248,9 @@ public class BaseController {
     protected String getParam(String paramName){
         return controller.getPara(paramName);
     }
+    protected Integer getParamToInt(String paramName){
+        return controller.getParaToInt(paramName);
+    }
 
     protected void setAttr(String name, Object value){
         controller.setAttr(name,value);

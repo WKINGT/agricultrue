@@ -22,6 +22,7 @@ import java.util.List;
 
 public class WebConfig extends XgsConfig {
 	public static Prop RSA = PropKit.use("rsa.properties");
+	public static Prop webSocket = PropKit.use("websocket.properties");
 	@Override
 	public void plugin(Plugins me) {
 		PathKit.setWebRootPath("/");
