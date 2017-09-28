@@ -12,7 +12,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter{
 	
 //	ChannelGroup channelGroups = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 	
-//	private MsgHandler mh = Enhancer.enhance(MsgHandler.class);  
+//	private WebMsgHandler mh = Enhancer.enhance(WebMsgHandler.class);
 	
 //	public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
 ////		session.put(ctx.channel().id().asShortText(),ctx.channel());
