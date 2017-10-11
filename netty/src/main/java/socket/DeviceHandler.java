@@ -21,7 +21,6 @@ public class DeviceHandler extends SimpleChannelInboundHandler<byte[]> {
 	private DeviceMsgHandler mh = Enhancer.enhance(DeviceMsgHandler.class);  
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, byte[] msg) throws Exception {
-		// TODO Auto-generated method stub
 		boolean next = mh.channelRead0(ctx, msg);
 		if(!next) {
 			ctx.fireChannelRead(msg);
@@ -80,6 +79,5 @@ public class DeviceHandler extends SimpleChannelInboundHandler<byte[]> {
 		Channel incoming = ctx.channel();
 		System.out.println(incoming.remoteAddress() + "掉线\n掉线时间为："
 				+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		//FIXME session remove
 	}
 }

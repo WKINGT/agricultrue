@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.protocol.ClientCmdHandlerPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -105,11 +106,11 @@ public class ClientMsgHandler {
 			} catch (Exception e) {
 				throw new AgriException(PropKit.use("errcode.txt").getInt("error.format"), "消息格式错误");
 			}
-			ClientCmdHandler rech = ClientCmdHandler.getHandler(String.valueOf(cmd));
-			Object obj = rech.execCmd(userId, uuid, msg, sysId, incoming);
-			if(obj != null){
-				incoming.write(obj);
-			}
+			ClientCmdHandler rech = ClientCmdHandlerPool.getHandler(String.valueOf(cmd));
+////			Object obj = rech.execCmd(userId, uuid, msg, sysId, incoming);
+//			if(obj != null){
+//				incoming.write(obj);
+//			}
 			incoming.flush();
 		}catch (Exception e) {
 			e.printStackTrace();

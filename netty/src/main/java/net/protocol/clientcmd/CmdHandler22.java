@@ -17,7 +17,7 @@ import net.util.BytesHelper;
 public class CmdHandler22 extends ClientCmdHandler {
 
 	@Override
-	public Object exec(String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
+	public Object exec(String client, String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
 		// TODO Auto-generated method stub
 		
 		Map<String, Channel> mapDeviceChannel = mc.getDeviceToChannel();

@@ -5,6 +5,7 @@ import io.netty.channel.Channel;
 import net.protocol.DeviceCmdHandler;
 import net.protocol.devicecmd.handler30.ThreadPool;
 import net.util.BytesHelper;
+import net.xgs.commons.annotation.Inject;
 import net.xgs.entity.edomain.DataTypeEnum;
 /**
  * 信息上报命令
@@ -14,8 +15,10 @@ import net.xgs.entity.edomain.DataTypeEnum;
 import net.xgs.services.MachineDataService;
 import net.xgs.services.MachineService;
 public class CmdHandler30 extends DeviceCmdHandler {
-	MachineDataService machineDataService = new MachineDataService();
-	MachineService machineService = new MachineService();
+	@Inject
+	MachineDataService machineDataService;
+	@Inject
+	MachineService machineService;
 	@Override
 	public Object exec(byte[] sysIdbyte, byte[] cmdNo, byte cmd, byte[] data, Channel channel) {
 		logger.debug("%n=={}，信息上报命令,箱子主动上报信息的data内容16进制{}" ,channel.remoteAddress(), BytesHelper.byte2hex(data));

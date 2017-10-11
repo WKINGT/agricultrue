@@ -8,21 +8,24 @@ import org.slf4j.LoggerFactory;
 
 import channel.MapDeviceChannel;
 import channel.MsgMapping;
-import channel.Session;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import msg.PackageMsg;
 import net.protocol.Protocol;
 import net.protocol.entity.JobControlDeviceReq;
 import net.util.BytesHelper;
+import session.MapSysIdUserId;
+import session.Terminal;
+import session.UserMap;
 
 public class ContronlDevice {
 	
 	protected static Logger logger = LoggerFactory.getLogger(ContronlDevice.class);
 	private static MapDeviceChannel mc = MapDeviceChannel.instance();
 	private static short cmdN0=100;
-//	private static String userId = "jobId";
-	
+	private static MapSysIdUserId session = MapSysIdUserId.getInstance();
+
+
 	public static Object exec(Channel channel, Object msg) {
 		JobControlDeviceReq entity = (JobControlDeviceReq) msg;
 		String systemId = entity.getSystemId();
@@ -47,12 +50,18 @@ public class ContronlDevice {
 			ch.writeAndFlush(cmdMsg);
 			logger.debug("计划操作设备命令发送成功");
 			
-			Map<String, Channel> userIdtoChannel = Session.instance().getUserIdTOChannel();
-			Map<Channel, String> channelToUserId = Session.instance().getChannelTOUserId();
+
 			String userId = "jobId"+ cmdN0;
-			userIdtoChannel.put(userId, channel);
-			channelToUserId.put(channel, userId);
+			session.getMapChannelToUserId().put(channel,userId);
+			session.getMapChannelToClient().put(channel,Protocol.JOB);
+			Terminal ter = new Terminal();
+			ter.put(Protocol.JOB,channel);
+			UserMap userMap = new UserMap();
+			userMap.put(userId,ter);
+			session.getSessionMap().put(systemId,userMap);
 			String msgId = systemId + cmdN0;
+
+			//消息映射
 			Map<String, String> msgIDtoUser = MsgMapping.instance().getMsgIdtoUser();
 			Map<String, String> msgIdtoUUID = MsgMapping.instance().getMsgIdtoUUID();
 			msgIDtoUser.put(msgId, userId);

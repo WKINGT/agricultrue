@@ -4,6 +4,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.jfinal.aop.Enhancer;
+import net.xgs.commons.annotation.Inject;
+import net.xgs.commons.plugin.ioc.InjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +16,12 @@ import net.xgs.services.MachineService;
 
 public class ThreadPool{
 	Logger logger = LoggerFactory.getLogger(getClass());
-	
-	MachineDataService machineDataService = Enhancer.enhance(MachineDataService.class);
-	MachineService machineService =  Enhancer.enhance(MachineService.class);
-	AlarmMsgService service =  Enhancer.enhance(AlarmMsgService.class);
+	@Inject
+	MachineDataService machineDataService;
+	@Inject
+	MachineService machineService;
+	@Inject
+	AlarmMsgService service;
 	private ExecutorService singlExecutorService;
 	private static ThreadPool pool;
 	
@@ -28,6 +32,7 @@ public class ThreadPool{
 	public static ThreadPool instance(){
 		if(pool == null){
 			pool = new ThreadPool();
+			InjectUtils.inject(pool);
 		}
 		return pool;
 	}

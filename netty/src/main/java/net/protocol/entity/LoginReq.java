@@ -1,8 +1,12 @@
 package net.protocol.entity;
 
+import java.util.List;
+
 public class LoginReq {
 	private String loginAccount;
 	private String loginPwd;
+
+
 	public String getLoginAccount() {
 		return loginAccount;
 	}

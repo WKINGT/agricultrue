@@ -45,9 +45,7 @@ public class AgriDecoder extends ByteToMessageDecoder {
 			if(begin==clientBeginByte) {
 				byte[] len_b = new byte[4];
 				in.readBytes(len_b);
-//				System.out.println(Arrays.toString(len_b));
 				int len = BytesHelper.bytesToInt2(len_b);
-//				System.out.println("报文长度"+len);
 				byte[] src=new byte[len];
 				in.readBytes(src);
 				byte[] msg = new byte[src.length+5];

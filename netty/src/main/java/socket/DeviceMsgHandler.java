@@ -1,6 +1,7 @@
 package socket;
 
 
+import net.xgs.commons.plugin.ioc.InjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,11 +74,9 @@ public class DeviceMsgHandler {
 		
 		
 		byte crc = req[i];
-		System.out.println(crc);
 		i++;
 		
 		if(BytesHelper.getUnsignedInt(req[i]) != ended){
-			//
 			logger.error("报文格式错误");
 //			return;
 		}
@@ -85,7 +84,7 @@ public class DeviceMsgHandler {
 		//services handler
 		
 		DeviceCmdHandler rech = DeviceCmdHandler.getHandler(cmdS);
-		
+
 		Object obj = rech.execCmd(equipmentIdbyte, cmdNobyte, cmdbyte, data, channel);
 		
 		if(obj != null){

@@ -36,7 +36,6 @@ public class JobMsgHandler {
 			byte[] returnMsgs = rsaEncrypt.encrypt(rsaEncrypt.getPublicKey(), JsonKit.toJson(resp).getBytes());
 			channel.writeAndFlush(returnMsgs);
 		}
-		
 		return true;
 	}
 

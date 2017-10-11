@@ -14,10 +14,14 @@ import net.protocol.Protocol;
 public class CmdHandler50 extends ClientCmdHandler {
 
 	@Override
-	public Object exec(String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
-		
-		ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.HEART_BEAT, "{}");
-		
+	public Object exec(String client, String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
+		Object respMsg = null;
+		if(Protocol.PHONE.equals(client)){
+			respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.LOGININ, "{}");
+		}else if(Protocol.WEB.equals(client)){
+			respMsg = PackageMsg.packingWeb(sysId,uuid,Protocol.LOGININ,"{}");
+		}
+
 		return respMsg;
 	}
 

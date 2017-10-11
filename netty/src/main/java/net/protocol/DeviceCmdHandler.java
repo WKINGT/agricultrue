@@ -1,14 +1,15 @@
 package net.protocol;
 
 import com.jfinal.aop.Enhancer;
+import net.xgs.commons.plugin.ioc.InjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import channel.MapDeviceChannel;
 import channel.MsgMapping;
-import channel.Session;
 import exception.AgriException;
 import io.netty.channel.Channel;
+import session.MapSysIdUserId;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,9 +20,10 @@ public abstract class DeviceCmdHandler {
 	
 	protected MapDeviceChannel mc = MapDeviceChannel.instance();
 
+	protected MapSysIdUserId session = MapSysIdUserId.getInstance();
 	private static Map<String,DeviceCmdHandler> handlerPool = new ConcurrentHashMap<>();
 
-	protected Session mSession = Session.instance();
+//	protected Session mSession = Session.instance();
 	
 	protected MsgMapping msgMapping = MsgMapping.instance();
 	
@@ -36,7 +38,8 @@ public abstract class DeviceCmdHandler {
 		DeviceCmdHandler handler = handlerPool.get(classNameFull);
 		if (handler == null){
 			Class<?> clazz =Class.forName(classNameFull);
-			handler = Enhancer.enhance(clazz.newInstance());
+			handler = (DeviceCmdHandler)(Enhancer.enhance(clazz));
+			InjectUtils.inject(handler.getClass().getSuperclass(),handler);
 			handlerPool.put(classNameFull,handler);
 		}
 		return handler;

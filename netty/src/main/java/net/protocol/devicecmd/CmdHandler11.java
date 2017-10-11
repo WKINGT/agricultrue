@@ -28,22 +28,22 @@ public class CmdHandler11 extends DeviceCmdHandler {
 		
 		Map<String, String> msgIDtoUser = msgMapping.getMsgIdtoUser();
 		Map<String, String> msgIdtoUUID = msgMapping.getMsgIdtoUUID();
-		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
+//		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
 		String userId = msgIDtoUser.get(msgId);
 		String uuid = msgIdtoUUID.get(msgId);
 		//下命令用户的管道
-		Channel ch = userIdtoChannel.get(userId);
-		if(ch!=null) {
-			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.SEARCH_PLAN, resp);
-			ch.writeAndFlush(respMsg);
-			
-			if(BytesHelper.getUnsignedInt(data[0])==0) {
-				logger.debug("箱子给客户端发查询灌溉计划状态命令的返回消息，返回码为--{}，命令状态码为--{}",Integer.toHexString(BytesHelper.getUnsignedInt(data[0])),Integer.toHexString(BytesHelper.getUnsignedInt(data[1])));
-			}else {
-				logger.debug("箱子给客户端发查询灌溉计划状态命令的返回消息成功，查询计划错误码为--{}",Integer.toHexString(BytesHelper.getUnsignedInt(data[0])));
-			}
-			
-		}
+//		Channel ch = userIdtoChannel.get(userId);
+//		if(ch!=null) {
+//			ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.SEARCH_PLAN, resp);
+//			ch.writeAndFlush(respMsg);
+//
+//			if(BytesHelper.getUnsignedInt(data[0])==0) {
+//				logger.debug("箱子给客户端发查询灌溉计划状态命令的返回消息，返回码为--{}，命令状态码为--{}",Integer.toHexString(BytesHelper.getUnsignedInt(data[0])),Integer.toHexString(BytesHelper.getUnsignedInt(data[1])));
+//			}else {
+//				logger.debug("箱子给客户端发查询灌溉计划状态命令的返回消息成功，查询计划错误码为--{}",Integer.toHexString(BytesHelper.getUnsignedInt(data[0])));
+//			}
+//
+//		}
 		// 清除该消息的session
 		msgIDtoUser.remove(msgId);
 		msgIdtoUUID.remove(msgId);

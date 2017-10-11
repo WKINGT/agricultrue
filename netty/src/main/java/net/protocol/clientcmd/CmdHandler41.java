@@ -9,6 +9,8 @@ import msg.PackageMsg;
 import net.protocol.ClientCmdHandler;
 import net.protocol.Protocol;
 import net.protocol.entity.LogoutResp;
+import session.MapSysIdUserId;
+
 /**
  * 登出
  * @author TianW
@@ -17,14 +19,13 @@ import net.protocol.entity.LogoutResp;
 public class CmdHandler41 extends ClientCmdHandler{
 
 	@Override
-	public Object exec(String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
+	public Object exec(String client, String userId, String uuid, String msg, String sysId, Channel channel) throws AgriException {
 		
 		LogoutResp resp = new LogoutResp();
-		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
-		Map<Channel, String> channelToUserId = mSession.getChannelTOUserId();
-		Channel ch = userIdtoChannel.get(userId);
-		userIdtoChannel.remove(uuid);
-		channelToUserId.remove(ch);
+//		Map<String, Channel> userIdtoChannel = mSession.getUserIdTOChannel();
+//		Map<Channel, String> channelToUserId = mSession.getChannelTOUserId();
+
+		MapSysIdUserId.getInstance().remove(userId,client,channel);
 		resp.setCode(0);
 		ByteBuf respMsg = PackageMsg.packingClient(sysId, uuid, Protocol.LOGINOUT, resp);
 		return respMsg;
