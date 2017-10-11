@@ -9,10 +9,7 @@ import net.xgs.controller.core.BaseController;
 import net.xgs.entity.Constants;
 import net.xgs.entity.edomain.IsShowEnum;
 import net.xgs.init.XgsConfig;
-import net.xgs.model.BaseBlock;
-import net.xgs.model.BaseBlockHistoryData;
-import net.xgs.model.BaseMachineParams;
-import net.xgs.model.ViewBlockMachine;
+import net.xgs.model.*;
 import net.xgs.query.FilterBuilder;
 import net.xgs.services.*;
 import org.apache.commons.lang.StringUtils;
@@ -105,7 +102,9 @@ public class BlockDataController extends BaseController {
                 }
                 if(viewBlockMachine.getStr("is_controller").equals(IsShowEnum.TRUE.getValueStr()))
                 {
-                    viewBlockMachine.put("controller_data",machineDataService.findByMachine(viewBlockMachine.getMachineId()).getData());
+                    DataMachine dataMachine = machineDataService.findByMachine(viewBlockMachine.getMachineId());
+                    if (dataMachine==null) continue;
+                    viewBlockMachine.put("controller_data",dataMachine.getData());
                 }
             }
             Collections.sort(page.getList(), (o1, o2) -> {
