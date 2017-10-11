@@ -50,6 +50,7 @@
 
 		</style>
 		<style type="text/css">
+
 			.container_webscket .switch{
 				display:none !important;
 			}
@@ -67,7 +68,7 @@
 			}
 			.container_webscket label:before{
 				content: '' !important;
-				width: 62px !important;
+				width: 46px !important;
 				display: block !important;
 				border-radius: 24px !important;
 				height: 22px !important;
@@ -91,11 +92,18 @@
 				-webkit-transition: all 0.3s ease !important;
 			}
 			.container_webscket .switch:checked~label:after{
-				-webkit-transform: translateX(32px) !important;
+				-webkit-transform: translateX(16px) !important;
 			}
 
 			.container_webscket .switch:checked~label:before{
 				background-color:green !important;
+			}
+			.status-span{
+				display: inline-block;
+				height: 24px;
+				line-height: 27px;
+				float: left;
+				margin-left: 14px;
 			}
 		</style>
 	</head>

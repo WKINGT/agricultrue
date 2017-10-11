@@ -10,7 +10,6 @@
 		<script type="text/javascript" src="${ctxStatic}/js/plugins/websocketUtils.js"></script>
 		<script type="text/javascript" src="${ctxStatic}/js/other.js"></script>
 
-
 <script type="text/javascript">
 		var grid
         var url = xgs.utils.setToken(location.href,'${token}&blockId=${blockId}');
@@ -61,13 +60,13 @@
                             }
                             var  html = "";
 							var checked =status==='开'?'checked':'';
-                            html += '<div  class="container_webscket" style="width: 42px;margin-bottom: 8px;">';
+                            html += '<div  class="container_webscket" style="width: 42px;margin-bottom: 8px;height:24px;float:left;">';
                             html += '<div class="bg_con">';
                             html += '<input id = "'+rowData.machine_id+'"  device_id="'+rowData.device_id+'"  machine-name="'+rowData.machine_name+'" type="checkbox" onclick="sendMsg($(this),'+JSON.stringify(rowData).replace(/"/g, '&quot;') + ')" class="switch" check-on="'+check_on+'" check-off="'+check_off+'" '+checked+' />';
                             html += '<label for="'+rowData.machine_id+'"></label>';
                             html += '</div>';
                             html += '</div>';
-                            html += "&nbsp;<span id='"+rowData.machine_id+"_msg' >当前状态:"+status+"</span>";
+                            html += "&nbsp;<span id='"+rowData.machine_id+"_msg' class='status-span'>当前状态:"+status+"</span>";
                             return html;
                         }
                     }
@@ -111,3 +110,6 @@
             }
         }
 		</script>
+<style>
+
+</style>
