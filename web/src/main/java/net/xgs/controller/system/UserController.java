@@ -28,8 +28,7 @@ public class UserController extends BaseController {
     OrgService orgService;
     @Inject
     BlockService blockService;
-    @Inject
-    BlockMemberService blockMemberService;
+
     public void index(){
         if (isGet){
             renderJsp("admin/user/list.jsp");
@@ -70,8 +69,7 @@ public class UserController extends BaseController {
             baseMember.setHeadPortrait(getParam("head_portrait"));
             String [] strings = controller.getParaValues("roleIds");
             String [] blockIds = controller.getParaValues("blockIds");
-            blockMemberService.save(blockIds,baseMember.getId(),optId);
-            Boolean result = memberService.save(baseMember,strings,optId,controller.getOrgId());
+            Boolean result = memberService.save(baseMember,strings,optId,controller.getOrgId(),blockIds);
             if (result){
                 renderHtml(JSONObject.toJSONString(Constants.editSuccess));
                return;

@@ -33,6 +33,8 @@ public class MemberService extends BaseService{
     OrgService orgService;
     @Inject
     MenuFunctionService menuFunctionService;
+    @Inject
+    BlockMemberService blockMemberService;
     public BaseMember findByAccountPwd(String account, String pwd) {
         BaseMember baseMember =  BaseMember.dao.findFirst("SELECT * FROM base_member where status = ? and login_account = ?", StatusEnum.NORMAL_USE.getValue(),account);
         if (baseMember!=null){
@@ -117,7 +119,7 @@ public class MemberService extends BaseService{
         return BaseMember.dao.findById(userId);
     }
     @Before(Tx.class)
-    public Boolean save(BaseMember baseMember, String[] roleIds, String optId, String orgId) {
+    public Boolean save(BaseMember baseMember, String[] roleIds, String optId, String orgId,String []  blockIds) {
         if (StringUtils.isNotBlank(baseMember.getLoginPwd())){
             String salt = MD5Utils.salt();
             String password = MD5Utils.pwdRule(baseMember.getLoginPwd(),salt);
@@ -140,6 +142,7 @@ public class MemberService extends BaseService{
         for (String roleId:roleIds){
             Db.save("sys_user_role",new Record().set("user_id",baseMember.getId()).set("role_id",roleId));
         }
+        blockMemberService.save(blockIds,baseMember.getId(),optId);
         return true;
     }
     @Before(Tx.class)
