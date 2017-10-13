@@ -33,7 +33,7 @@ public class WebConfig extends XgsConfig {
 		IocPlugin ioc = new IocPlugin(routes, pkgs);
 		me.add(ioc);
 		if (prop.getBoolean("quartz.enable",false)){
-			QuartzPlugin plugin = QuartzPlugin.me(YesterdayQueryJob.class);
+			QuartzPlugin plugin = QuartzPlugin.me(QueryJob.class,YesterdayQueryJob.class);
 			me.add(plugin);
 		}
 	}
