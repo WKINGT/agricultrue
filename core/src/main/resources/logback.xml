@@ -89,5 +89,5 @@
 	<logger name="io.netty.util" level="ERROR" />
 	<logger name="io.netty.buffer" level="ERROR" />
 	<logger name="druid.sql" level="INFO" />
-
+	<logger name="cn.cyejing.ngrok.core" level="ERROR"/>
 </configuration>

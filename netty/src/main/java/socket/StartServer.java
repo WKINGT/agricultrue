@@ -1,5 +1,7 @@
 package socket;
 
+import cn.cyejing.ngrok.core.NgrokClient;
+import cn.cyejing.ngrok.core.Tunnel;
 import com.jfinal.aop.Enhancer;
 import com.jfinal.config.Routes;
 import com.jfinal.kit.Prop;
@@ -15,12 +17,15 @@ import net.xgs.model._MappingKit;
 import net.xgs.model._MappingViewKit;
 import net.xgs.services.AlarmMsgService;
 import net.xgs.services.MachineBlockTypeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import websocket.WebsocketChatServer;
 
 import java.util.List;
 
 public class StartServer {
 
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	MachineBlockTypeService machineService = Enhancer.enhance(MachineBlockTypeService.class);
 	private Prop prop = PropKit.use("cfg.properties");
 	protected static DruidPlugin dp;
@@ -83,9 +88,20 @@ public class StartServer {
         	
         }
         System.out.println("设备状态初始化成功");
-        
-        
-        
+
+        //启动ngrok
+		try{
+			String serverAddress = PropKit.use("cnf.txt").get("erverAddress");
+			int serverPort = PropKit.use("cnf.txt").getInt("serverPort");
+			Tunnel tunnel = new Tunnel.TunnelBuild()
+					.setPort(8888).setProto("tcp").setSubDomain("test").build();
+			new NgrokClient(serverAddress, serverPort)
+					.addTunnel(tunnel).start();
+			System.out.println("ngrok is started!");
+		}catch (Exception e){
+			logger.debug("ngrok start is failed!");
+		}
+
 		new Thread(new serverStart(new AgriProServer(8888))).start();
 		new Thread(new WebServerStart(new WebsocketChatServer(8686))).start();
 
