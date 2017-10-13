@@ -9,11 +9,11 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseDayHistoryDataMachine<M extends BaseDayHistoryDataMachine<M>> extends Model<M> implements IBean {
 
-	public void setId(java.math.BigInteger id) {
+	public void setId(java.lang.String id) {
 		set("id", id);
 	}
 
-	public java.math.BigInteger getId() {
+	public java.lang.String getId() {
 		return get("id");
 	}
 

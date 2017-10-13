@@ -178,12 +178,15 @@ public abstract class DateUtils {
      * 当天的前一天开始时间
      */
     public static String getBeforeStartDateStr(){
+        return format(getStartDate(getBeforeDate()),PATTERN_DATETIME);
+    }
+    public static Date getBeforeDate(){
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setLenient(false);
         calendar.setTime(date);
         calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)-1);
-        return format(getStartDate(calendar.getTime()),PATTERN_DATETIME);
+        return calendar.getTime();
     }
 
     /**
@@ -191,12 +194,13 @@ public abstract class DateUtils {
      * @return
      */
     public static String getBeforeEndDateStr(){
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setLenient(false);
-        calendar.setTime(date);
-        calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)-1);
-        return format(getEndDate(calendar.getTime()),PATTERN_DATETIME);
+        return format(getEndDate(getBeforeDate()),PATTERN_DATETIME);
+    }
+    public static Long getBeforeEndDate(){
+        return getEndDate(getBeforeDate()).getTime();
+    }
+    public static Long getBeforeStartDate(){
+        return getStartDate(getBeforeDate()).getTime();
     }
     /**
      * 日期格式化
@@ -326,7 +330,7 @@ public abstract class DateUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(getLongDateByStr("2017-09-05 01:00:00"));
+        System.out.println(getBeforeStartDateStr());
     }
     /**
      * 获取一个小时的结束时间

@@ -1,15 +1,6 @@
 package net.xgs.plugins.job;
 
-import java.util.List;
-
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.jfinal.aop.Enhancer;
-
 import net.xgs.commons.utils.DateUtils;
 import net.xgs.entity.edomain.IsShowEnum;
 import net.xgs.model.DataMachine;
@@ -19,6 +10,13 @@ import net.xgs.services.MachineBlockTypeService;
 import net.xgs.services.MachineDataService;
 import net.xgs.utils.DBUtils;
 import net.xgs.utils.ObjectUtils;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 
 @Scheduled(prop="quartz.data.handle.cron")
@@ -31,9 +29,9 @@ public class QueryJob implements Job{
 		List<ViewMachineBlockType> machineList = machineBlockTypeService.findMachineByParams("machine_id",IsShowEnum.FALSE.getValue(),IsShowEnum.FALSE.getValue(),IsShowEnum.TRUE.getValue());
 		logger.debug("查询所有产生数据的设备->完成");
 		List<String> machineIds = ObjectUtils.getMethodValue(machineList,"getStr","machine_id");
-		List<DataMachine> dataMaxMachines =machineDataService.findDateDataByMachineIds(machineIds,DateUtils.getBeforeStartDateStr(),DateUtils.getBeforeEndDateStr(),"DESC");
+		List<DataMachine> dataMaxMachines =machineDataService.findDateDataByMachineIds(machineIds,DateUtils.getBeforeStartDate(),DateUtils.getBeforeEndDate(),"DESC");
 		logger.debug("查询指定设备的最大数据值->完成");
-		List<DataMachine> dataMinMachines =machineDataService.findDateDataByMachineIds(machineIds,DateUtils.getBeforeStartDateStr(),DateUtils.getBeforeEndDateStr(),"ASC");
+		List<DataMachine> dataMinMachines =machineDataService.findDateDataByMachineIds(machineIds,DateUtils.getBeforeStartDate(),DateUtils.getBeforeEndDate(),"ASC");
 		logger.debug("查询指定设备的最小数据值->完成");
 		for (DataMachine dataMaxMachine:dataMaxMachines){
 			for (DataMachine dataMinMachine:dataMinMachines){

@@ -10,16 +10,15 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.redis.Cache;
 import com.jfinal.plugin.redis.Redis;
+import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.annotation.Service;
-import net.xgs.commons.utils.StrUtils;
 import net.xgs.init.XgsConfig;
 import net.xgs.model.BaseAlarmMsg;
 import net.xgs.model.BaseMachine;
+import net.xgs.model.DataMachine;
 import net.xgs.model.ViewMachine;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +27,8 @@ import java.util.Map;
  */
 @Service
 public class AlarmMsgService extends BaseService {
+    @Inject
+    MachineDataService machineDataService;
     Prop prop = PropKit.use("deviceError.txt");
 	MachineService machineService = Enhancer.enhance(MachineService.class);
 	Cache cache = Redis.use(XgsConfig.prop.get("cache.redis.share.name"));
@@ -98,7 +99,17 @@ public class AlarmMsgService extends BaseService {
             }
             String msg =  prop.get(code+"."+baseAlarmMsg.getMsgCode());
             if (baseAlarmMsg.getMachineData()!=null){
-                msg += " "+baseAlarmMsg.getMachineData()+" 当前值是:%d";
+                DataMachine dataMachine = machineDataService.findByMachine(baseAlarmMsg.getMachineId());
+                String joinData =  dataMachine.getJointData();
+                String currentData = "";
+                if (joinData.indexOf(",")>-1){
+                    String [] datas = joinData.split(",");
+                    currentData = "温度为 "+Integer.parseInt(datas[0],16);
+                    currentData += "、湿度为 "+Integer.parseInt(datas[1],16);
+                }else {
+                    currentData = ""+Integer.parseInt(dataMachine.getData(),16);
+                }
+                msg +=String.format(" " + baseAlarmMsg.getMachineData() + " 当前值是:%s",currentData) ;
             }
             baseAlarmMsg.put("msg_content",msg);
         }
