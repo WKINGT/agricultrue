@@ -5,9 +5,7 @@ import com.jfinal.ext.interceptor.POST;
 import net.xgs.commons.annotation.Controller;
 import net.xgs.commons.annotation.Inject;
 import net.xgs.commons.utils.DateUtils;
-import net.xgs.commons.utils.StrUtils;
 import net.xgs.entity.edomain.IsShowEnum;
-import net.xgs.model.DataMachine;
 import net.xgs.model.DayHistoryDataMachine;
 import net.xgs.model.HistoryDataMachine;
 import net.xgs.model.ViewMachineBlockType;
@@ -15,8 +13,6 @@ import net.xgs.services.DayHistoryDataMachineService;
 import net.xgs.services.HistoryDataMachineService;
 import net.xgs.services.MachineBlockTypeService;
 import net.xgs.services.MachineDataService;
-import net.xgs.utils.DBUtils;
-import net.xgs.utils.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +53,10 @@ public class DataMachineController extends BaseController {
                 historyDataMachine.setDataType(dataMachine.getDataType());
                 historyDataMachine.setMaxData(dataMachine.getMaxData());
                 historyDataMachine.setMinData(dataMachine.getMinData());
-                historyDataMachine.setCreateTime(DateUtils.getTimeStart(dataMachine.getCreateTime()));
+                historyDataMachine.setCreateTime(DateUtils.getTimeStart(
+                        DateUtils.format(
+                                Long.valueOf(dataMachine.getCreateTime()),
+                                DateUtils.PATTERN_DATETIME)));
                 historyDataMachine.setMachineId(dataMachine.getMachineId());
                 historyDataMachines.add(historyDataMachine);
             }
