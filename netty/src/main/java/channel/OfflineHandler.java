@@ -2,6 +2,11 @@ package channel;
 
 import java.util.Map;
 
+import com.jfinal.aop.Enhancer;
+import net.protocol.devicecmd.handler30.ThreadPool;
+import net.xgs.commons.annotation.Inject;
+import net.xgs.entity.edomain.DataTypeEnum;
+import net.xgs.services.MachineDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,6 +57,7 @@ public class OfflineHandler {
 			String code = PropKit.use("deviceError.txt").get("dev.offline");
 			//上报控制箱异常
 			service.save(systemId, "00-80-00", code);
+			ThreadPool.instance().execSaveReportMsg(systemId,"00-80-00","fb", DataTypeEnum.ONLINEOFF.getValue(),"fb");
 			
 		}
 		//掉线的为用户

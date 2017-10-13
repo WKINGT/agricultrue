@@ -6,7 +6,8 @@ package net.xgs.entity.edomain;
 public enum DataTypeEnum {
     LUX(1,"光照"),
     TEMPERATURE(2,"温度"),
-    HUMIDITY(3,"湿度");
+    HUMIDITY(3,"湿度"),
+    ONLINEOFF(4,"设备掉线");
     private Integer value;
     private String desc;
 
