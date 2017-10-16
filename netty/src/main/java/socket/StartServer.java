@@ -90,17 +90,22 @@ public class StartServer {
         System.out.println("设备状态初始化成功");
 
         //启动ngrok
-		try{
-			String serverAddress = PropKit.use("cnf.txt").get("erverAddress");
-			int serverPort = PropKit.use("cnf.txt").getInt("serverPort");
-			Tunnel tunnel = new Tunnel.TunnelBuild()
-					.setPort(8888).setProto("tcp").setSubDomain("test").build();
-			new NgrokClient(serverAddress, serverPort)
-					.addTunnel(tunnel).start();
-			System.out.println("ngrok is started!");
-		}catch (Exception e){
-			logger.debug("ngrok start is failed!");
-		}
+		boolean ngrokStart = false;
+		do{
+			try{
+				String serverAddress = PropKit.use("cnf.txt").get("erverAddress");
+				int serverPort = PropKit.use("cnf.txt").getInt("serverPort");
+				Tunnel tunnel = new Tunnel.TunnelBuild()
+						.setPort(8888).setProto("tcp").setSubDomain("test").build();
+				new NgrokClient(serverAddress, serverPort)
+						.addTunnel(tunnel).start();
+				ngrokStart = true;
+				System.out.println("ngrok is started!");
+			}catch (Exception e){
+				logger.error("ngrok start is failed!");
+				ngrokStart = false;
+			}
+		}while (ngrokStart == false);
 
 		new Thread(new serverStart(new AgriProServer(8888))).start();
 		new Thread(new WebServerStart(new WebsocketChatServer(8686))).start();
