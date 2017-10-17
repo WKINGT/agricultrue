@@ -90,6 +90,7 @@ public class StartServer {
         System.out.println("设备状态初始化成功");
 
         //启动ngrok
+        /*
 		boolean ngrokStart = false;
 		do{
 			try{
@@ -106,7 +107,7 @@ public class StartServer {
 				ngrokStart = false;
 			}
 		}while (ngrokStart == false);
-
+        */
 		new Thread(new serverStart(new AgriProServer(8888))).start();
 		new Thread(new WebServerStart(new WebsocketChatServer(8686))).start();
 
