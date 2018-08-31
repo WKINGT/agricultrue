@@ -1,8 +1,8 @@
-遇到问题：oracle安装问题，OMMB安装问题
+遇到问题：oracle安装问题，OB安装问题
 
 解决方法：
 
-本周主要工作，OMMB配置，实战服务端代码  学习Spring boot
+本周主要工作，OB配置，实战服务端代码  学习Spring boot
 遇到问题，spring boot 注入
 
 技术：对设计模式理解不是很透彻，代码质量不高
