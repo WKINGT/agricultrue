@@ -1,0 +1,25 @@
+遇到问题：oracle安装问题，OMMB安装问题
+
+解决方法：
+
+本周主要工作，OMMB配置，实战服务端代码  学习Spring boot
+遇到问题，spring boot 注入
+
+技术：对设计模式理解不是很透彻，代码质量不高
+效率
+团队合作
+
+
+解决方法：
+
+
+系统启动的时候会实例化bean然后注入，自己new出来的对象没有注入
+你直接new出来的对象不是spring容器里的，自然不能注入service了，注入是spring来控制的
+
+
+所有的实例spring容器都初始化好了，如果想使用就应该从context上下文中获取； 你自己new出来的对象中的成员属性并没有通过spring容器依赖注入
+
+@Autowired注入Spring Bean，则当前类必须也是Spring Bean才能调用它，不能用new xxx()来获得对象，这种方式获得的对象无法调用@Autowired注入的Bean
+
+https://blog.csdn.net/cgengwei/article/details/79419305
+我这里主要是想在项目中运用装饰者模式，但是因为自己new出来的装饰者service （不受spring管理）并没有注入其他service时，但是我又确实需要去注入
